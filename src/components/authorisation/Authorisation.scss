@@ -1,19 +1,22 @@
 .form_auth_block{
-    position: relative;
-    top: 190px;
-    left: 330px;
-    width: 572px;
-
-    display: inline-block;
+    display: flex;
+    padding-top: 40%;
+    width: 70%;
     overflow: hidden;
-
     margin: 0 auto;
     background-color: white;
   
     border-radius: 4px;
   }
+  // form.childNodes{
+  //   width: 100%;
+  // }
+  .form_auth_style{
+    display: flex;
+    flex-direction: column;
+  }
   .form_auth_block_content{
-  padding-top: 4%;
+    width: 100%;
   }
   .form_auth_block_head_text{
     display: block;
