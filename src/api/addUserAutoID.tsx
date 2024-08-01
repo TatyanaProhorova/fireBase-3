@@ -13,9 +13,3 @@ export const createUserAutoID = async (profile: object) => {
     console.error('Error adding document: ', e);
   }
 };
-
-// createUserAutoID({
-//   name: 'Gala',
-//   email: 'gala@mail.com',
-//   password: 'GALA'
-});

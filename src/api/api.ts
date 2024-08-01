@@ -81,11 +81,6 @@ export const createUserAutoID = async (profile: object) => {
   }
 };
 
-// createUserAutoID({
-// name: 'Gala',
-// email: 'gala@mail.com',
-// password: 'GALA'
-// });
 
 //Возвращает массив записей коллекции
 
