@@ -141,7 +141,7 @@ const deleteUserByID = (uid: string) => {
     console.log('delete ok!');
   });
 };
-//deleteUserByID('7');     // delete ok!
+deleteUserByID('5');     // delete ok!
 
 //в массив получить все ID документов коллекции
 

@@ -1,9 +1,10 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
-import './Authorisation.scss';
-import { Button, TextField } from '@mui/material';
+import styles from './Authorization.module.scss';
+import { Button, TextField, styled } from '@mui/material';
 import { createUserAutoID } from '../../api/addUserAutoID';
+import { loginUser } from '../../api/authorize';
 
-export const Authorisation = () => {
+export const Authorization = () => {
  const [fields, setFields] = useState({
   phone: '',
   password: ''
@@ -17,16 +18,22 @@ export const Authorisation = () => {
     });
   }
 console.log(fields);
+
+const CustomTextField = styled(TextField) ({
+  margin: "5px 0",
+  background: "red"
+})
   const sendForm = (event: FormEvent)=> {
     event.preventDefault();
-    createUserAutoID(fields);
+    loginUser(fields.phone, fields.password);
+    
   }
   return (
     <>
-      <div className="form_auth_block">
-        <div className="form_auth_block_content">
-          <p className="form_auth_block_head_text">Войти в систему</p>
-          <form className="form_auth_style" onSubmit={sendForm} method="post">
+      <div className={styles.form_auth_block}>
+        <div className={styles.form_auth_block_content}>
+          <p className={styles.form_auth_block_head_text}>Войти в систему</p>
+          <form className={styles.form_auth_style} onSubmit={sendForm} method="post">
             <TextField  onChange={changeFields} value={fields.phone} required id="phone" label="Номер телефона" />
             <TextField onChange={changeFields} value={fields.password} required type="password" id="password" label="Пароль" />
             <Button type="submit" variant="contained">

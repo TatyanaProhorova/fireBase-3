@@ -1,12 +1,10 @@
-import { useState } from 'react';
-
 // import './App.scss';
-import { getUsers } from './api/api';
 import { Sidebar } from './components/sidebar/Sidebar';
 import { Header } from './components/header/Header';
-import { Authorisation } from './components/authorisation/Authorisation';
+import { Authorization } from './components/authorization/Authorization';
 
 function App() {
+
   return (
     <div className="app_container">
       <Header />
@@ -16,7 +14,7 @@ function App() {
           <div className="content">
             Some content
             <div>
-              <Authorisation />
+              <Authorization />
             </div>
           </div>
         </main>
@@ -24,5 +22,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;

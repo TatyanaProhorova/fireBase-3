@@ -38,7 +38,7 @@ const userCollection = 'users';
 
 //\\
 // const collectionRef = collection(db, 'users');
-3nfg
+
 export const getUsers = async () => {
     const result: User[] = [{ email: 'start', password: 'passStart' }];
     try {
