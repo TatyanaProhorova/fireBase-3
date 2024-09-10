@@ -1,8 +1,19 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 import styles from './Authorization.module.scss';
 import { Button, TextField, styled } from '@mui/material';
-import { createUserAutoID } from '../../api/addUserAutoID';
 import { loginUser } from '../../api/authorize';
+
+// to use Autt module autentication with Firebase 
+// vizit https://firebaseopensource.com/projects/firebase/quickstart-android/auth/readme/
+
+// Email/Password Setup
+// Go to the Firebase Console and navigate to your project:
+// Select the Auth panel and then click the Sign In Method tab.
+// Click Email/Password and turn on the Enable switch, then click Save.
+// Under Authorized Domains click Add Domain and add auth.example.com.
+// Run the app on your device or emulator.
+// Select EmailPasswordActivity from the main screen.
+// Fill in your desired email and password and click Create Account to begin.
 
 export const Authorization = () => {
  const [fields, setFields] = useState({
@@ -11,6 +22,9 @@ export const Authorization = () => {
  })
   const changeFields = (event: ChangeEvent<HTMLInputElement>) => {
     setFields((currentField)=>{
+
+      console.log('currentField', currentField);
+      
       return{
         ...currentField,
         [event.target.id]: event.target.value
@@ -19,10 +33,10 @@ export const Authorization = () => {
   }
 console.log(fields);
 
-const CustomTextField = styled(TextField) ({
-  margin: "5px 0",
-  background: "red"
-})
+// const CustomTextField = styled(TextField) ({
+//   margin: "5px 0",
+//   background: "red"
+// })
   const sendForm = (event: FormEvent)=> {
     event.preventDefault();
     loginUser(fields.phone, fields.password);

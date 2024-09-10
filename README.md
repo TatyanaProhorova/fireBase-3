@@ -1,30 +1,39 @@
 # React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<!-- как делаем роутинг
 
-Currently, two official plugins are available:
+1   Оборачиваем приложение в  <BrowserRouter> приносит  HTML5   Router API в react,,,,
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+2 в App, или где надо, оборачиваем  <Route> в <Routes>
+в нашем случае - в <div className="content">   .
+Компонент <Route> связывает URL и UI. В 1-ой  строке - пример динамического роутинга .
+ <Route  path="/student/:studentid" element={<StudentPage />} /> // : изменяемая часть
+              <Route  path="/tutor" element={<TutorPage />} />
 
-## Expanding the ESLint configuration
+3  В  StudentPage  использовали хук useParams - он дает доступ к параметрам этого конкретного пути (параметры URL этого конкретного компонента UI):  
+const{ studentid } = useParams();
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
+export const StudentPage = () => {
+    const{ studentid } = useParams();
+    return(
+        <div>
+         { studentid }
+        </div>
+    )
 }
-```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+4  В компоненте GutterlessList используем хук useNavigate и пишем переход на страницу студента, затем функцию используем по клику
+
+export const GutterlessList = () => {
+
+   const navigate = useNavigate();
+
+   const goToStudent = (id: number) => {
+       navigate(`/student/${id}`);        // динам строка
+     }
+
+    return (
+      <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+        {[1, 23, 33, 4, 55, 6].map((value) => (
+          <ListItem
+            onClick={() => goToStudent(value)} -->

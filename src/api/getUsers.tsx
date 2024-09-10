@@ -9,28 +9,16 @@ import {
 
 import { db } from './fBStoreConstants';
 
-import { initializeApp } from 'firebase/app';
 
-import {
-  getDoc,
-
-
-  doc,
-  updateDoc,
-  deleteDoc,
-  deleteField,
-  setDoc,
-  serverTimestamp
-} from 'firebase/firestore';
 
 //Это конфигурация Firebase, у каждого проекта она своя. Её нужно скопировать из консоли вашего проекта
 
 
 interface User {
-  email: string;
-  password: string;
+  name: string;
+  surname: string;
+  form: string;
 }
-
 
 // Initialize Cloud Firestore and get a reference to the service
 
@@ -40,7 +28,7 @@ const userCollection = 'users';
 // const collectionRef = collection(db, 'users');
 
 export const getUsers = async () => {
-    const result: User[] = [{ email: 'start', password: 'passStart' }];
+    const result: User[] = [{ name: '', surname: '', form: ''}];
     try {
       const q = query(collection(db, userCollection));
       //const q = query(collection(db, userCollection), where('first', '==', 'Ada'));
