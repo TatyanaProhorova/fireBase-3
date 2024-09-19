@@ -22,9 +22,8 @@ export const Authorization = () => {
  })
   const changeFields = (event: ChangeEvent<HTMLInputElement>) => {
     setFields((currentField)=>{
-
-      console.log('currentField', currentField);
       
+      console.log('currentField', currentField);
       return{
         ...currentField,
         [event.target.id]: event.target.value
@@ -40,8 +39,8 @@ console.log(fields);
   const sendForm = (event: FormEvent)=> {
     event.preventDefault();
     loginUser(fields.phone, fields.password);
-    
   }
+  
   return (
     <>
       <div className={styles.form_auth_block}>

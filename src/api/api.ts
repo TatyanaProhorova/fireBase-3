@@ -143,6 +143,8 @@ const deleteUserByID = (uid: string) => {
 };
 deleteUserByID('5');     // delete ok!
 
+
+
 //в массив получить все ID документов коллекции
 
 interface Id {
@@ -162,6 +164,8 @@ async function getUIDs<T>(collection_name: string) {
 
   return result;
 }
+
+
 //getUIDs('study2');
 
 //Установите данные документа внутри коллекции, (create)

@@ -1,9 +1,9 @@
 // import './App.scss';
 import { Sidebar } from './components/sidebar/Sidebar';
-import { TutorPage } from './components/tutorPage/TutorPage';
-import { StudentPage } from './components/studentPage/StudentPage';
+import { TutorPage } from './pages/tutorPage/TutorPage';
+import { StudentPage } from './pages/studentPage/StudentPage';
 import { Header } from './components/header/Header';
-import { Authorization } from './components/authorization/Authorization';
+import { Authorization } from './pages/authorization/Authorization';
 
 import { useNavigate, Link } from "react-router-dom";
 import {Route, Routes} from "react-router-dom";

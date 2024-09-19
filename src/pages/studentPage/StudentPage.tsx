@@ -24,6 +24,7 @@ export const StudentPage = () => {
           .finally(()=>{setIsLoading(false)})
         }
     }, [])
+    //TODO: вопрос про ветку ниже  ???
     if (!studentid) {
         return (
            <div>
@@ -41,7 +42,7 @@ export const StudentPage = () => {
     if (!studentData) {
         return (
            <div>
-              Такого студента нет
+              Данные о студенте отсутствуют
            </div> 
         )
     }
