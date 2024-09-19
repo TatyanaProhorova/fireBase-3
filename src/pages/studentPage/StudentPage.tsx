@@ -13,7 +13,7 @@ export const StudentPage = () => {
     const [studentData, setStudentData] = useState<Student | null>(null);
     
     const [isLoading, setIsLoading] = useState(false);
-
+// TODO: вместо studentid должно быть поле с ?? ФИ + класс
     const{ studentid } = useParams();
     
     useEffect( () => {
@@ -24,7 +24,7 @@ export const StudentPage = () => {
           .finally(()=>{setIsLoading(false)})
         }
     }, [])
-    //TODO: вопрос про ветку ниже  ???
+    //TODO: вопрос про ветку ниже  ???  когда в нее попадаем?
     if (!studentid) {
         return (
            <div>
@@ -47,18 +47,12 @@ export const StudentPage = () => {
         )
     }
 const {surname, name, form} = studentData
-    return(
-        
+    return(    
         <>
+            <div>student</div> <div>student</div>
+            
             <div>
-                student
-            </div>
-            <div>
-                student
-            </div>
-
-            <div>
-                <span className='studentName&Form'>`&{surname}  &{form}`</span>
+                <span className='studentName&Form'>`&{name}  &{surname}  &{form}`</span>
             </div>
 
             <div>

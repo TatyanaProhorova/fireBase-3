@@ -32,6 +32,8 @@ export const StudentDataForm = (props) => {
     }
     addUserAutoID(studentProfile);
     // TODO: проверить, что ученик был создан успешно
+    // ? при создании добавить функцию - возврат по полям
+    // наличия id (true)?
     onSuccess();
   }
   

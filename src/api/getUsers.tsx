@@ -28,7 +28,7 @@ const userCollection = 'users';
 // const collectionRef = collection(db, 'users');
 
 export const getUsers = async () => {
-    const result: User[] = [{ name: '', surname: '', form: ''}];
+    const result: User[] = [{ surname: '', name: '', form: ''}];
     try {
       const q = query(collection(db, userCollection));
       //const q = query(collection(db, userCollection), where('first', '==', 'Ada'));

@@ -7,21 +7,28 @@ import IconButton from '@mui/material/IconButton';
 import { useNavigate } from 'react-router-dom';
 
 
-export const GutterlessList = () => {
-   // TODO: В компoНент прихходит массив students пррорпсом
-   const navigate = useNavigate();
-   const goToStudent = (id: number) => {
-   navigate(`/student/${id}`);  // динамическая строка
-   }
+export const GutterlessList = (props) => {
+  const {studentList} = props;
+  // TODO: должен приходить props - массив студентов: []values
+  const navigate = useNavigate();
+  const goToStudent = (id: number) => {  // id: number  ->  surname: stering
+  //navigate(`/student/${id}`);  // динамическая строка
+  navigate(`/student/${id}`);
+  }
     return (
 
+
+          // <ul>
+          // {studentList.map((value) => (
+          //   <li key={value.surname}> {value.surname}</li>))}
+          // </ul>  
       //TODO: map по stydents
       <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-        {[11, 23, 33, 55, 6].map((value) => (
+        {studentList.map((value) => (
 
           <ListItem
-            onClick={() => goToStudent(value)}
-            key={value}
+            onClick={() => goToStudent(value.surname)}
+            key={value.surname}
             disableGutters
             secondaryAction={
               <IconButton aria-label="comment">
@@ -29,7 +36,7 @@ export const GutterlessList = () => {
               </IconButton>
             }
           >
-            <ListItemText primary={`Line item ${value}`} />
+            <ListItemText primary={`Ученик ${value.surname}`} />
           </ListItem>
         ))}
       </List>

@@ -3,11 +3,20 @@ import { GutterlessList } from './GutterlessList';
 import { useState } from 'react';
 import { Modal } from '@mui/material';
 import { StudentDataForm } from '../../shared/StudentDataForm';
+import { getUsers } from '../../api/getUsers';
+import { Student } from '../../types';
 
 export const TutorPage = () => {
 
   const [isModalVisible, setIsModalVisible] = useState(false);
-  
+
+  const [studentList, setStudentList] = useState<Student[]>([]);
+
+  const getApiData = async () => {
+  const response = await getUsers();
+  setStudentList(response);
+  }  
+
   const handleClose =  () => {
     setIsModalVisible(false)
   }
@@ -16,12 +25,12 @@ export const TutorPage = () => {
     setIsModalVisible(true);
   }
 
-  const addStudentSuccess = () =>  {
+  const addStudentSuccess = () => {
     handleClose();
-   // TODO: делать повторный запрос за списком учеников
+    getApiData();
+   // ^^^ TODO: делать повторный запрос за списком учеников
   }
 
-  // state, fetch...
   return(
     <>  
     <div className={styles.general}>
@@ -37,11 +46,20 @@ export const TutorPage = () => {
         </div>
         
         <div className={styles.studentListContainer}> 
-        {/* TODO: уходит props с полученными с backend  students */}
-          <GutterlessList />
-        </div>
-        
+        {/* TODO: уходит props с полученными с backend students */}
+          <GutterlessList studentList={studentList} />
+        </div>    
+
+        <div>
+          <ul>
+          {studentList.map((value) => (
+            <li key={value.surname}>{value.surname}</li>))}
+
+          </ul>  
+         </div>
+          
       </div>
+
     </div>
     <Modal
       open={isModalVisible}
