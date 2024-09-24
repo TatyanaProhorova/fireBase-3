@@ -150,7 +150,7 @@ deleteUserByID('5');     // delete ok!
 interface Id {
   id: string;
 }
-async function getUIDs<T>(collection_name: string) {
+export async function getUIDs<T>(collection_name: string) {
   // const result: doc.data.Id[] = [];
   const collectionRef = collection(db, collection_name);
   const querySnapshot = await getDocs(collectionRef);
