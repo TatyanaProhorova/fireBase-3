@@ -8,7 +8,7 @@ import {
    } from 'firebase/firestore';
 
 import { db } from './fBStoreConstants';
-import { Roles, Student, Teacher } from '../types';
+import { Roles } from '../types';
 
 const userCollection = 'users';
 
@@ -22,14 +22,10 @@ export const getUsersByRole  = async <T> (role: Roles) => {
   
       docsSnapshot.forEach((doc) => {
         const data = doc.data ();
-
-        // result.push(data as any)
-// generic в  =>  функциях
-
-// @ts-ignore
-result.push(data as T[]) 
-
-        
+            // result.push(data as any)
+            // generic в  =>  функциях
+            // @ts-ignore
+        result.push(data as T[])         
       });
     } catch (error) {
       console.error(error);

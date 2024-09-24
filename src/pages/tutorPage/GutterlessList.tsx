@@ -15,6 +15,8 @@ export const GutterlessList = (props) => {
   //navigate(`/student/${id}`);  // динамическая строка
   navigate(`/student/${id}`);
   }
+
+  console.log('studentList', studentList);
     return (
 
 
@@ -27,7 +29,7 @@ export const GutterlessList = (props) => {
         {studentList.map((value) => (
 
           <ListItem
-            onClick={() => goToStudent(value.surname)}
+            onClick={() => goToStudent(value.id)}
             key={value.surname}
             disableGutters
             secondaryAction={
