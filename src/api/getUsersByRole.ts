@@ -21,7 +21,17 @@ export const getUsersByRole  = async <T> (role: Roles) => {
       const docsSnapshot = await getDocs(q);
   
       docsSnapshot.forEach((doc) => {
-        const data = doc.data ();
+        const data = {
+          id: doc.id,
+          ...doc.data()
+        };
+
+//         You can use the snapshot doc.id
+// I like to add id as a property to the object:
+
+// snapshot.docs.map((doc) => ({id: doc.id, ...doc.data()})) 
+// https://stackoverflow.com/questions/63671237/how-to-get-document-id-of-firestore-in-react
+
             // result.push(data as any)
             // generic в  =>  функциях
             // @ts-ignore

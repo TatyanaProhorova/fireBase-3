@@ -11,7 +11,7 @@ export const GutterlessList = (props) => {
   const {studentList} = props;
   // TODO: должен приходить props - массив студентов: []values
   const navigate = useNavigate();
-  const goToStudent = (id: number) => {  // id: number  ->  surname: stering
+  const goToStudent = (id: string) => {  // id: number  ->  surname: string
   //navigate(`/student/${id}`);  // динамическая строка
   navigate(`/student/${id}`);
   }

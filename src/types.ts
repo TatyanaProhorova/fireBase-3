@@ -5,6 +5,7 @@ export enum Roles {
 
 export type Student = {
     role: Roles.Student,
+    id: string;
     surname: string,
     name: string,
     form: string,
@@ -14,6 +15,7 @@ export type Student = {
 
 export type Teacher = {
     role: Roles.Teacher,
+    id: string;
     surname: string,
     name: string,
 }

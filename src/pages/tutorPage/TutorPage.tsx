@@ -41,38 +41,34 @@ export const TutorPage = () => {
   return(
     <>  
     <div className={styles.general}>
+       
+      <div className={styles.studentListContainer}>
 
-      <div className={styles.studentListHeaderContainer}>
-        <div className={styles.studentListHeader}>
-          <header>Список учеников</header>  
+        <div className={styles.studentListHeaderContainer}>
+          <div className={styles.studentListHeader}>
+            <header className={styles.listHeader}>Список учеников</header>  
+          </div>
+          <div className={styles.addingStudent}>
+            <button onClick={addStudent} name="addingButton" >
+              +
+            </button>
+          </div>
         </div>
-        <div className={styles.addingStudent}>
-          <button onClick={addStudent} name="addingButton" >
-            +
-          </button>
-        </div>
-      </div>
-        
-      <div className={styles.studentListContainer}> 
-      {/* DONE: уходит props с полученными с backend students */}
-        <GutterlessList studentList={studentList} />
-      </div>    
 
-      <div>
-        <ul>
-        {studentList.map((value) => (
-          <li key={value.surname}>{value.surname}</li>))}
-        </ul>  
+        {/* DONE: уходит props с полученными с backend students */}
+          <GutterlessList studentList={studentList} />
+
       </div>
-    </div>
+      
+
+        <Modal
+        open={isModalVisible}
+        onClose={handleClose}>   
+          <StudentDataForm onSuccess={addStudentSuccess}/>
+        </Modal>
+      </div>
     
-    <Modal
-      open={isModalVisible}
-      onClose={handleClose}
 
-    >
-      <StudentDataForm onSuccess={addStudentSuccess}/>
-    </Modal>
     </>
   )
 }

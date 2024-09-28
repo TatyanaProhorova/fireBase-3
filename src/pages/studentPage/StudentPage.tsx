@@ -2,7 +2,7 @@ import styles from './StudentPage.module.scss';
 
 import { useParams } from 'react-router-dom';
 
-import { getDocument } from '../../api/getByID';
+import { getByID } from '../../api/getByID';
 
 import { Student } from '../../types';
 
@@ -13,18 +13,18 @@ export const StudentPage = () => {
     const [studentData, setStudentData] = useState<Student | null>(null);
     
     const [isLoading, setIsLoading] = useState(false);
-// TODO: вместо studentid должно быть поле с ?? ФИ + класс
+
     const{ studentid } = useParams();
     
     useEffect( () => {
         if (studentid) {
           setIsLoading(true);
-          getDocument("users", studentid)
+          getByID("users", studentid)
           .then((result)=>{setStudentData(result)})
           .finally(()=>{setIsLoading(false)})
         }
     }, [])
-    //TODO: вопрос про ветку ниже  ???  когда в нее попадаем?
+    //TODO: вопрос про ветку ниже  ???  когда в нее попадаем
     if (!studentid) {
         return (
            <div>

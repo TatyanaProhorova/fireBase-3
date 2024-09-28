@@ -1,3 +1,4 @@
+import styles from './StudentDataForm.module.scss';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { FormControl, FormLabel } from '@mui/material';
@@ -32,21 +33,35 @@ export const StudentDataForm = (props) => {
     }
     addUserAutoID(studentProfile);
     // TODO: проверить, что ученик был создан успешно
-    // ? при создании добавить функцию - возврат по полям
+    // для этого? при создании добавить функцию с возвратом по полям
     // наличия id (true)?
     onSuccess();
   }
   
   return(
-    <FormControl>
+    <FormControl className={styles.StudentDataForm}>
       <form  onSubmit={sendForm} method="post">
-        <FormLabel>Enter Name</FormLabel>
+        <div>
+          <FormLabel>Введите данные ученика  </FormLabel>
+        </div>
+        <div>
+          <TextField onChange={changeFields} value={fields.name} required type="text" id='name'  placeholder="Имя" />
+        </div>
+        {/* <div>
+          <FormLabel>Введите фамилию</FormLabel>
+        </div> */}
+        <div>        
+          <TextField onChange={changeFields} value={fields.surname} required type="text" id='surname' variant='outlined' placeholder="Фамилия" />
+        </div>
+        {/* <div>
+          <FormLabel>Введите класс</FormLabel>
+        </div> */}
+        <div>
+          <TextField onChange={changeFields} value={fields.form} required type="text" id='form' variant='outlined' placeholder="Класс" /> 
+        </div>
+        
 
-        <TextField onChange={changeFields} value={fields.name} required type="text" id='name'  placeholder="Имя" />
-        <TextField onChange={changeFields} value={fields.surname} required type="text" id='surname' variant='outlined' placeholder="Фамилия" />
-        <TextField onChange={changeFields} value={fields.form} required type="text" id='form' variant='outlined' placeholder="Класс" />
-
-        <Button type="submit"> Submit </Button>
+        <Button type="submit"> отправить </Button>
       </form>
 </FormControl>
   )

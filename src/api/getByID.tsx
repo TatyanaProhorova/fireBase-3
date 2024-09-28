@@ -9,7 +9,7 @@ import { Student } from '../types';
 
 
 // получить отдельный документ по его идентификатору
-export async function getDocument(
+export async function getByID(
   collectionName="users",
   documentId: string  
 ) {

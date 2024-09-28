@@ -141,7 +141,7 @@ const deleteUserByID = (uid: string) => {
     console.log('delete ok!');
   });
 };
-deleteUserByID('5');     // delete ok!
+//deleteUserByID('5');     // delete ok!
 
 
 

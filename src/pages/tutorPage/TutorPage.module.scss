@@ -5,7 +5,13 @@
 }
 
 .studentListHeader{
-    padding-top: 17%;
+    display: flex;
+
+}
+
+.listHeader{
+    text-align: center;
+    line-height: 40.5px;
 
 }
 
@@ -14,6 +20,31 @@
 
 }
 
-// .studentListHeaderContainer{
-//     display: flex; 
+.studentListHeaderContainer{
+    display: flex; 
+    padding-top: 17%;
+    justify-content: center;
+
+}
+
+// .modalContainer{
+//     width:900px;
+//     height: 900px;
+//     position: absolute;
 // }
+
+.MuiFormControl-root css-1nrlq1o-MuiFormControl-root{
+    // display: flex;
+    // justify-content: center;
+}
+
+:has(label){
+    background: whitesmoke;
+    width: 60%;
+    // padding-left: 10%;
+    margin-left: 20%;
+    padding-top: 30px;
+
+}
+
+// MuiFormControl-root css-1nrlq1o-MuiFormControl-root
