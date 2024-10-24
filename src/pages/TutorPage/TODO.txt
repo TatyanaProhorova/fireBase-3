@@ -1,0 +1,12 @@
+в сервисе создать новый react-проекет
+
+npm install firebase
+
+инициализировать файл конфигурации, напритер  в firebase>firebase.js,  вкотором 
+сщздан объект initiialiseApp и ему аргументом передан firebaseConfig, это берем из настроек 
+созданного прпоекта на сайте.
+ для создания в приложении reg/auth добавим import { getAuth }  from "firebase/auth";
+  const auth = get Auth(app);  и export { app, auth };
+  
+
+В src/contexts/authContext/index.jsxfug
