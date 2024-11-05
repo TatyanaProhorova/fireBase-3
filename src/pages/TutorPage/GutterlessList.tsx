@@ -32,7 +32,7 @@ export const GutterlessList = (props: Props) => {
       {studentList.map((value) => (
         <ListItem
           onClick={() => goToStudent(value.id)}
-          key={value.surname}
+          key={value.id}
           disableGutters
           secondaryAction={
             <IconButton aria-label="comment">
@@ -40,7 +40,7 @@ export const GutterlessList = (props: Props) => {
             </IconButton>
           }
         >
-          <ListItemText primary={`Ученик ${value.surname}`} />
+          <ListItemText primary={`${value.surname} ${value.name}`} />
         </ListItem>
       ))}
     </List>

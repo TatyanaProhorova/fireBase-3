@@ -22,7 +22,7 @@ interface Props {
   children: ReactNode;
 }
 
-// type Props = PropsWithChildren<{}>  // здесь childeren - необязателен!
+// type Props = PropsWithChildren<{}>  // при такой типизации children - необязателен!
 
 export function AuthProvider({ children }: Props) {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
@@ -30,7 +30,7 @@ export function AuthProvider({ children }: Props) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, initializeUser); // onAuthStateChanged в библиотеке type?
+    const unsubscribe = onAuthStateChanged(auth, initializeUser); // onAuthStateChanged в библиотеке 
     return unsubscribe;
   }, []);
 
@@ -52,10 +52,15 @@ export function AuthProvider({ children }: Props) {
   };
 
   return (
-    <AuthContext.Provider value={value}>
-      {loading ? <span> Загрузка </span> : children} // понятнеее: вместо след строки, если загрузка // закончена, то
-      тут будет рендер children
+    <AuthContext.Provider value={value}>                                                    
       {/* {!loading && children} */}
+
+      {loading ? <span> Загрузка </span> : children}
+
     </AuthContext.Provider>
   );
 }
+// понятная запись условия вместо заком. строки: если загрузка 
+// закончена, то тут будет рендер children
+
+

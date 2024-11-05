@@ -4,7 +4,7 @@ import { TutorPage } from './pages/TutorPage/TutorPage';
 import { StudentPage } from './pages/StudentPage/StudentPage';
 import { Header } from './shared/components/Header/Header';
 import { Authorization } from './pages/Authorization/Authorization';
-
+import { Profile } from './pages/profilePage/Profile';
 import { useNavigate, Link } from 'react-router-dom';
 import { Route, Routes } from 'react-router-dom';
 import Register from './pages/Register/Register';
@@ -18,10 +18,12 @@ function App() {
           <div className="content">
             Some content
             <Routes>
-              <Route path="*" element={<Authorization />} />
+              <Route path="/login" element={<Authorization />} />
               <Route path="/register" element={<Register />} />
               <Route path="/student/:studentId" element={<StudentPage />} /> // : изменяемая часть
+                                                                             // : страница студента для препода   
               <Route path="/tutor" element={<TutorPage />} />
+              <Route path="/profile" element={<Profile />} />
             </Routes>
           </div>
         </main>

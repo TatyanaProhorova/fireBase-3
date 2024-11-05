@@ -1,9 +1,13 @@
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from './fBStoreConstants';
-
-export const loginUser = (email: string, password: string) => {
-  signInWithEmailAndPassword(auth, email, password).then((response) => {
+//                                                        nav: NavigateFunction
+export const loginUser = (email: string, password: string, nav: any, redirectionOnSuccess: string) => {
+  signInWithEmailAndPassword(auth, email, password)
+  .then((response) => {
     localStorage.setItem('token', response.user.accessToken); // библиотечные функции м остаться без типа
+  })
+  .then(() => {
+    nav(redirectionOnSuccess);
   });
 };
 

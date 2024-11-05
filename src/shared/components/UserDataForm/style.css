@@ -1,0 +1,25 @@
+.MuiModal-root css-79ws1d-MuiModal-root {
+  display: flex;
+}
+
+.MuiModal-root css-79ws1d-MuiModal-root div:nth-child(3) {
+  position: relative;
+  left: 190px;
+  top: 190px;
+}
+/* 
+// label
+// .MuiFormLabel-root MuiFormLabel-colorPrimary css-u4tvz2-MuiFormLabel-root {
+//     text-align: center;
+//     padding-left: 30px;
+// } */
+label {
+  padding-left: 30px;
+}
+
+div.MuiFormControl-root.css-1nrlq1o-MuiFormControl-root {
+  position: absolute;
+  left: 100px;
+  top: 150px;
+  background-color: white;
+}

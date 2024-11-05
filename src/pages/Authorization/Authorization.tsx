@@ -3,6 +3,7 @@ import { ChangeEvent, FormEvent, useState } from 'react';
 import { Button, TextField } from '@mui/material';
 import { loginUser } from '../../api/authorize';
 import './authorisationStyle.css';
+import { useNavigate } from 'react-router-dom';
 
 // // !!
 // // // Cross origin redirect sign-in is no longer supported in many browsers. Update your app to ensure your users can continue to sign into your app.
@@ -21,11 +22,14 @@ import './authorisationStyle.css';
 // Select EmailPasswordActivity from the main screen.
 // Fill in your desired email and password and click Create Account to begin.
 
+// есть пользователь с pus@sup.ru и паролем pus123SUP
+
 export const Authorization = () => {
   const [fields, setFields] = useState({
     email: '', // -> e-mail
     password: ''
   });
+  const nav = useNavigate();
   const changeFields = (event: ChangeEvent<HTMLInputElement>) => {
     setFields((currentField) => {
       console.log('currentField', currentField);
@@ -35,14 +39,14 @@ export const Authorization = () => {
       };
     });
   };
-  console.log(fields);
+
 
   // const CustomTextField = styled(TextField) ({
   //   margin: "5px 0",//   background: "red"
   // })
   const sendForm = (event: FormEvent) => {
     event.preventDefault();
-    loginUser(fields.email, fields.password);
+    loginUser(fields.email, fields.password, nav, '/profile');
   };
 
   return (
