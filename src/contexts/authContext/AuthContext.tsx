@@ -30,7 +30,7 @@ export function AuthProvider({ children }: Props) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, initializeUser); // onAuthStateChanged в библиотеке 
+    const unsubscribe = onAuthStateChanged(auth, initializeUser); // onAuthStateChanged в библиотеке
     return unsubscribe;
   }, []);
 
@@ -52,15 +52,12 @@ export function AuthProvider({ children }: Props) {
   };
 
   return (
-    <AuthContext.Provider value={value}>                                                    
+    <AuthContext.Provider value={value}>
       {/* {!loading && children} */}
 
       {loading ? <span> Загрузка </span> : children}
-
     </AuthContext.Provider>
   );
 }
-// понятная запись условия вместо заком. строки: если загрузка 
+// понятная запись условия вместо заком. строки: если загрузка
 // закончена, то тут будет рендер children
-
-

@@ -1,7 +1,6 @@
 import { addDoc, collection, deleteDoc, doc, getDocs, query, where } from 'firebase/firestore';
-
 import { db } from './fBStoreConstants';
-import { Roles } from '../types';
+import { Roles } from '../shared/types/user';
 
 const userCollection = 'users';
 
@@ -22,7 +21,6 @@ export const getUsersByRole = async <T>(role: Roles) => {
         id: doc.id,
         ...doc.data()
       };
-
       // @ts-ignore
       result.push(data as T[]);
     });
@@ -31,6 +29,34 @@ export const getUsersByRole = async <T>(role: Roles) => {
   }
   return result;
 };
+
+/**
+ * Функция получения данных пользователя по email
+ * @param {string | undefined} email - email пользователя
+ */
+
+export const getUserByEmail = async <T>(email: string) => {
+  const result: T[] = [];
+  try {
+    const q = query(collection(db, userCollection), where('email', '==', email));
+
+    const docsSnapshot = await getDocs(q);
+
+    docsSnapshot.forEach((doc) => {
+
+      const data = {
+        ...doc.data()
+      };
+
+    result.push(data as T);
+
+  })} catch (error) {
+    console.error(error);
+  }
+  return result;
+};
+
+
 
 /**
  * Функция для создания пользователя

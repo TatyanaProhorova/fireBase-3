@@ -2,8 +2,9 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { getById } from '../../api/common';
-import { Student } from '../../types';
-import styles from './StudentPage.module.scss';
+
+// import styles from './StudentPage.module.scss';
+import { Student } from '../../shared/types/user';
 
 export const StudentPage = () => {
   const [studentData, setStudentData] = useState<Student | null>(null);

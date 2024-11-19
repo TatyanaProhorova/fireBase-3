@@ -17,7 +17,7 @@
 //     e.preventDefault();
 //     if (!isRegistering) {
 //       if (confirmPassword == password) {
-        
+
 //         await signUpUser(email, password);
 //         setIsRegistering(false); // <->
 //       } else {

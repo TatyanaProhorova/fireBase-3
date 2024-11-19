@@ -25,8 +25,10 @@ import { useNavigate } from 'react-router-dom';
 // есть пользователь с pus@sup.ru и паролем pus123SUP
 
 export const Authorization = () => {
+  const [errorMessage, setErrorMessage] = useState('');
+
   const [fields, setFields] = useState({
-    email: '', // -> e-mail
+    email: '', 
     password: ''
   });
   const nav = useNavigate();
@@ -40,21 +42,22 @@ export const Authorization = () => {
     });
   };
 
-
   // const CustomTextField = styled(TextField) ({
   //   margin: "5px 0",//   background: "red"
   // })
-  const sendForm = (event: FormEvent) => {
+
+  const sendForm = async(event: FormEvent) => {
     event.preventDefault();
-    loginUser(fields.email, fields.password, nav, '/profile');
+    const isSuccessResponse = await loginUser(fields.email, fields.password);
+    if (isSuccessResponse) {
+      nav(`/profile/${fields.email}`);
+    } else {
+      setErrorMessage("Ошибка авторизации");
+    }
   };
 
   return (
     <>
-      {/* <div className={styles.form_auth_block}>
-        <div className={styles.form_auth_block_content}>
-          <p className={styles.form_auth_block_head_text}>Войти в систему</p>
-          <form className={styles.form_auth_style} onSubmit={sendForm} method="post"> */}
       <div className="form_auth_block">
         <div className="form_auth_block_content">
           <p className="form_auth_block_head_text">Войти в систему</p>
@@ -75,6 +78,11 @@ export const Authorization = () => {
               id="password"
               label="Пароль"
             />
+
+            <span style={{color: 'red'}}>
+              {errorMessage} 
+            </span>
+            
             <Button type="submit" variant="contained">
               ВОЙТИ В СИСТЕМУ
             </Button>

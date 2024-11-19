@@ -1,15 +1,27 @@
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from './fBStoreConstants';
-//                                                        nav: NavigateFunction
-export const loginUser = (email: string, password: string, nav: any, redirectionOnSuccess: string) => {
-  signInWithEmailAndPassword(auth, email, password)
-  .then((response) => {
-    localStorage.setItem('token', response.user.accessToken); // библиотечные функции м остаться без типа
-  })
-  .then(() => {
-    nav(redirectionOnSuccess);
-  });
-};
+import { NavigateFunction } from 'react-router-dom';
+
+
+export const loginUser = async(email: string,
+                          password: string,
+                          // nav: NavigateFunction,
+                          // redirectionOnSuccess: string
+                        ) => {
+  let isSuccessResponse = false;
+  try {  
+    const response = await signInWithEmailAndPassword(auth, email, password);
+      if (response.user) 
+        {localStorage.setItem('token', response.user.accessToken);
+        isSuccessResponse = true; 
+        }
+  } catch(error) {
+    console.log(error);
+  }
+                        
+  return isSuccessResponse;
+  };
+
 
 export const signUpUser = async (email: string, password: string) => {
   return createUserWithEmailAndPassword(auth, email, password);
