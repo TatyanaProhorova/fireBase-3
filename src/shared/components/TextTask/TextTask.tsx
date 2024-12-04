@@ -3,10 +3,9 @@
 import { TextField } from '@mui/material';
 
 export function TextTask() {
-  
-  return(
-  <>
-    <Textarea name="Outlined" placeholder="Введите развернутый ответ…" variant="outlined" />
-  </>
-  )  
+  return (
+    <>
+      <Textarea name="Outlined" placeholder="Введите развернутый ответ…" variant="outlined" />
+    </>
+  );
 }

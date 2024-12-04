@@ -6,8 +6,6 @@ import { useAuth } from '../../contexts/authContext/AuthContext';
 import { confirmPasswordReset } from '@firebase/auth';
 import { Roles, Student, Teacher } from '../../shared/types/user';
 
-
-
 type Fields = {
   role?: `${Roles}`; // тип как значения по ссылке
   surname: string;
@@ -69,7 +67,6 @@ const Admin = () => {
         <div className="form_auth_block_content">
           <p className="form_auth_block_head_text">Добавить пользователя</p>
           <form className="form_auth_style" onSubmit={onSubmit} method="post">
-
             <FormControl fullWidth>
               <InputLabel id="demo-simple-select-label">Роль</InputLabel>
               <Select
@@ -83,7 +80,6 @@ const Admin = () => {
                 <MenuItem value={Roles.Teacher}>учитель</MenuItem>
               </Select>
             </FormControl>
-
             <TextField
               onChange={changeFields}
               value={fields.email}
@@ -92,16 +88,13 @@ const Admin = () => {
               id="email"
               label="Электронная почта"
             />
-
             <TextField onChange={changeFields} value={fields.surname} required id="surname" label="Фамилия" />
-
             <TextField onChange={changeFields} value={fields.name} required id="name" label="Имя" />
-
             {/* {errorMessage && <span>ошибка:{errorMessage}</span>} */}
             <button type="submit" disabled={isRegistering}>
               {isRegistering ? 'ДОБАВЛЯЕМ ПОЛЬЗОВАТЕЛЯ...' : 'ДОБАВИТЬ ПОЛЬЗОВАТЕЛЯ'}
             </button>
-TODO: Вывести сообщение, что пользователь добавлен. Сделать таблицу пользователей для админа.
+            TODO: Вывести сообщение, что пользователь добавлен. Сделать таблицу пользователей для админа.
             {/* <Button type="submit" variant="contained">
               ВОЙТИ В СИСТЕМУ
             </Button> */}

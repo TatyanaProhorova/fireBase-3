@@ -8,7 +8,7 @@ import Multi from '../../shared/components/Multi/Multi';
 import { Button } from '@mui/material';
 import { TasksList } from '../../shared/widgets/TasksList/TasksList';
 
-// profile/pus@sup.ru 
+// profile/pus@sup.ru
 
 // аутентифицированный пользоавтель
 // email "pus@sup.ru" (string)
@@ -21,23 +21,23 @@ export const Profile = () => {
   const [userData, setUserData] = useState<Student | Teacher | null>(null);
   const { email } = useParams();
 
-//  TODO: сделать обновление задания не только по загрузке
- 
-    useEffect(() => {
-      if (!email) {
-        return
-      }
-      getUserByEmail(email).then(console.log);
-      // getUserByEmail(email).then(setUserData);   !!!!!!!!
-    }, []);
-   
+  //  TODO: сделать обновление задания не только по загрузке
+
+  useEffect(() => {
+    if (!email) {
+      return;
+    }
+    getUserByEmail(email).then(console.log);
+    // getUserByEmail(email).then(setUserData);   !!!!!!!!
+  }, []);
+
   return (
     <>
       <div>ЗДРАВСТВУЙТЕ, ваша электронная почта {email}</div>
       <div>У Вас новое задание по биологии</div>
-      <br /> 
-      <br /> 
+      <br />
+      <br />
       <TasksList />
     </>
   );
-}
+};

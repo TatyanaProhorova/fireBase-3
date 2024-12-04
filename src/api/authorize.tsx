@@ -25,5 +25,3 @@ export const loginUser = async (
 export const signUpUser = async (email: string, password: string) => {
   return createUserWithEmailAndPassword(auth, email, password);
 };
-
-

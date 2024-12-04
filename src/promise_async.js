@@ -1,5 +1,3 @@
-
-
 // const myPromise = new Promise((resolve, reject)=>{  // напр  fetch  ->  promise
 //   resolve("friend and me");
 // })
@@ -10,16 +8,15 @@
 //   }
 // )
 
-
 // const myPromise = new Promise((resolve, reject)=>{  // напр  fetch  ->  promise
 //     const isSuccess = true;
 //     if (isSuccess) {
-//       resolve("friend and me"); 
+//       resolve("friend and me");
 //     } else {
-//       reject("ошибка")  
+//       reject("ошибка")
 //     }
 //   })
-  
+
 //   myPromise.then(
 //     (response) => {
 //       console.log(response) //  "friend and me"
@@ -28,27 +25,22 @@
 //     (error)  => {
 //         console.error(error);// "ошибка"
 //     }
-//   ) 
-
+//   )
 
 function loadJson(url) {
-    return fetch(url)
-      .then(response => {
-        if (response.status == 200) {
-            const a = response.json()
-          return a;
-        } else {
-          throw new Error(response.status);
-        }
-      })
-  }
-  
-  loadJson('no-such-user.json').catch(alert);
+  return fetch(url).then((response) => {
+    if (response.status == 200) {
+      const a = response.json();
+      return a;
+    } else {
+      throw new Error(response.status);
+    }
+  });
+}
 
-  // .json() указывает объекту класса response формат получения данных.
+loadJson('no-such-user.json').catch(alert);
 
-
-
+// .json() указывает объекту класса response формат получения данных.
 
 //   async function loadJson(url) {
 //     try{
@@ -64,8 +56,6 @@ function loadJson(url) {
 //     }
 //   }
 
-  
-
 //   function loadJson(url){
 //     fetch(url)
 //     .then(response => {
@@ -74,10 +64,8 @@ function loadJson(url) {
 //             return result;
 //         } else {
 //             throw new Error(response.status);
-//         }  
+//         }
 //     })}
-
-    
 
 // function loadJson(url){
 //     fetch(url)
@@ -87,53 +75,55 @@ function loadJson(url) {
 //             return result;
 //         } else {
 //             throw new Error(response.status);
-//         }  
+//         }
 //     })}...
 
-    mariadb.createConnection(config)
-    .then(connection => {
-        connection.query('INSERT INTO...')
-            .then(() => {
-                console.log('Успешно.');
-            })
-            .catch(error => {
-                    console.log('Не удалось.');
-                    connection.end();
-                    throw error;
-            });
-        connection.query('INSERT INTO...')
-            .then(() => {
-                console.log('Успешно.');
-                connection.end();
-            })
-            .catch(error => {
-                console.log('Не удалось.');
-                connection.end();
-                throw error;
-            });
-    })
-    .catch(error => {
-        console.log('Попытка подключения не удалась.');
+mariadb
+  .createConnection(config)
+  .then((connection) => {
+    connection
+      .query('INSERT INTO...')
+      .then(() => {
+        console.log('Успешно.');
+      })
+      .catch((error) => {
+        console.log('Не удалось.');
+        connection.end();
         throw error;
-    });
-
-
-    async function addToDatabase(config) {
-      try {
-        const connect = await mariadb.createConnection(config);
-        try{
-         await connect.query('INSERT INTO...');
-         console.log('Успешно.');
-         await connect.query('INSERT INTO...');
-         console.log('Успешно.');
-        } catch(error) {
-         console.log('Не удалось.');
-         throw error;
-        } finally {
-         connect.end()
-        };
-     } catch(error) {
-        console.log('Попытка подключения не удалась.');
+      });
+    connection
+      .query('INSERT INTO...')
+      .then(() => {
+        console.log('Успешно.');
+        connection.end();
+      })
+      .catch((error) => {
+        console.log('Не удалось.');
+        connection.end();
         throw error;
-      }
-     }
+      });
+  })
+  .catch((error) => {
+    console.log('Попытка подключения не удалась.');
+    throw error;
+  });
+
+async function addToDatabase(config) {
+  try {
+    const connect = await mariadb.createConnection(config);
+    try {
+      await connect.query('INSERT INTO...');
+      console.log('Успешно.');
+      await connect.query('INSERT INTO...');
+      console.log('Успешно.');
+    } catch (error) {
+      console.log('Не удалось.');
+      throw error;
+    } finally {
+      connect.end();
+    }
+  } catch (error) {
+    console.log('Попытка подключения не удалась.');
+    throw error;
+  }
+}
