@@ -43,20 +43,17 @@ export const getUserByEmail = async <T>(email: string) => {
     const docsSnapshot = await getDocs(q);
 
     docsSnapshot.forEach((doc) => {
-
       const data = {
         ...doc.data()
       };
 
-    result.push(data as T);
-
-  })} catch (error) {
+      result.push(data as T);
+    });
+  } catch (error) {
     console.error(error);
   }
   return result;
 };
-
-
 
 /**
  * Функция для создания пользователя

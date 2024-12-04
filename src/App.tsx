@@ -19,10 +19,11 @@ function App() {
           <div className="content">
             Some content
             <Routes>
-              <Route path="/admin" element={<Admin />} />              
+              <Route path="/admin" element={<Admin />} />
               <Route path="/login" element={<Authorization />} />
               <Route path="/register" element={<Register />} />
-              <Route path="/student/:studentId" element={<StudentPage />} /> // : изменяемая часть // : страница студента для препода
+              <Route path="/student/:studentId" element={<StudentPage />} /> // : изменяемая часть // : страница
+              студента для препода
               <Route path="/tutor" element={<TutorPage />} />
               <Route path="/profile/:email" element={<Profile />} />
             </Routes>

@@ -28,7 +28,7 @@ export const Authorization = () => {
   const [errorMessage, setErrorMessage] = useState('');
 
   const [fields, setFields] = useState({
-    email: '', 
+    email: '',
     password: ''
   });
   const nav = useNavigate();
@@ -46,13 +46,13 @@ export const Authorization = () => {
   //   margin: "5px 0",//   background: "red"
   // })
 
-  const sendForm = async(event: FormEvent) => {
+  const sendForm = async (event: FormEvent) => {
     event.preventDefault();
     const isSuccessResponse = await loginUser(fields.email, fields.password);
     if (isSuccessResponse) {
       nav(`/profile/${fields.email}`);
     } else {
-      setErrorMessage("Ошибка авторизации");
+      setErrorMessage('Ошибка авторизации');
     }
   };
 
@@ -79,10 +79,8 @@ export const Authorization = () => {
               label="Пароль"
             />
 
-            <span style={{color: 'red'}}>
-              {errorMessage} 
-            </span>
-            
+            <span style={{ color: 'red' }}>{errorMessage}</span>
+
             <Button type="submit" variant="contained">
               ВОЙТИ В СИСТЕМУ
             </Button>

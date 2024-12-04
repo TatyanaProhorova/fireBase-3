@@ -7,17 +7,18 @@ import { confirmPasswordReset } from '@firebase/auth';
 import { Roles, Student, Teacher } from '../../shared/types/user';
 
 
+
 type Fields = {
-  role?: `${Roles}`,  // значение по ссылке
-  surname: string,
-  name: string,
-  email: string
-}
+  role?: `${Roles}`; // тип как значения по ссылке
+  surname: string;
+  name: string;
+  email: string;
+};
 
 const Admin = () => {
   const [isRegistering, setIsRegistering] = useState(false); //
   const [fields, setFields] = useState<Fields>({
-    role: undefined,  // выбор роли - выпадпющееп меню
+    role: undefined, // выбор роли - выпадaющее меню
     surname: '',
     name: '',
     email: ''
@@ -28,22 +29,17 @@ const Admin = () => {
     e.preventDefault();
     setIsRegistering(true);
     //export const createUserAutoID = async (profile: object) => {
-    createUserAutoID({role: fields.role,
-                    surname: fields.surname,
-                    name: fields.name,
-                    email: fields.email
-                    })
-     .then(() => {
-      console.log('Добавили пользователя ')
-    })
+    createUserAutoID({ role: fields.role, surname: fields.surname, name: fields.name, email: fields.email })
+      .then(() => {
+        console.log('Добавили пользователя ');
+      })
       // .catch(() => {
       //   setErrorMessage('Ошибка сервера');
       // })
-    .finally(() => {
-      setIsRegistering(false);
-    });
-  }
-  
+      .finally(() => {
+        setIsRegistering(false);
+      });
+  };
 
   const changeFields = (event: ChangeEvent<HTMLInputElement>) => {
     // setErrorMessage('');
@@ -73,28 +69,20 @@ const Admin = () => {
         <div className="form_auth_block_content">
           <p className="form_auth_block_head_text">Добавить пользователя</p>
           <form className="form_auth_style" onSubmit={onSubmit} method="post">
-            <TextField
-              onChange={changeFields}
-              value={fields.role}
-              required
-              // type="radio"
-              id="role"
-              label="Роль"
-            />
 
-        <FormControl fullWidth>
-          <InputLabel id="demo-simple-select-label">Роль</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={fields.role}
-            label="Роль"
-            onChange={changeSelect}
-          >
-            <MenuItem value={Roles.Student}>студент</MenuItem>
-            <MenuItem value={Roles.Teacher}>учитель</MenuItem>
-          </Select>
-        </FormControl>
+            <FormControl fullWidth>
+              <InputLabel id="demo-simple-select-label">Роль</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={fields.role}
+                label="Роль"
+                onChange={changeSelect}
+              >
+                <MenuItem value={Roles.Student}>студент</MenuItem>
+                <MenuItem value={Roles.Teacher}>учитель</MenuItem>
+              </Select>
+            </FormControl>
 
             <TextField
               onChange={changeFields}
@@ -105,30 +93,15 @@ const Admin = () => {
               label="Электронная почта"
             />
 
-            <TextField
-              onChange={changeFields}
-              value={fields.surname}
-              required
+            <TextField onChange={changeFields} value={fields.surname} required id="surname" label="Фамилия" />
 
-              id="surname"
-              label="Фамилия"
-            />
-
-            <TextField
-              onChange={changeFields}
-              value={fields.name}
-              required
-
-              id="name"
-              label="Имя"
-            />
-
+            <TextField onChange={changeFields} value={fields.name} required id="name" label="Имя" />
 
             {/* {errorMessage && <span>ошибка:{errorMessage}</span>} */}
             <button type="submit" disabled={isRegistering}>
               {isRegistering ? 'ДОБАВЛЯЕМ ПОЛЬЗОВАТЕЛЯ...' : 'ДОБАВИТЬ ПОЛЬЗОВАТЕЛЯ'}
             </button>
-
+TODO: Вывести сообщение, что пользователь добавлен. Сделать таблицу пользователей для админа.
             {/* <Button type="submit" variant="contained">
               ВОЙТИ В СИСТЕМУ
             </Button> */}

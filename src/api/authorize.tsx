@@ -2,33 +2,28 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'fire
 import { auth } from './fBStoreConstants';
 import { NavigateFunction } from 'react-router-dom';
 
-
-export const loginUser = async(email: string,
-                          password: string,
-                          // nav: NavigateFunction,
-                          // redirectionOnSuccess: string
-                        ) => {
+export const loginUser = async (
+  email: string,
+  password: string
+  // nav: NavigateFunction,
+  // redirectionOnSuccess: string
+) => {
   let isSuccessResponse = false;
-  try {  
+  try {
     const response = await signInWithEmailAndPassword(auth, email, password);
-      if (response.user) 
-        {localStorage.setItem('token', response.user.accessToken);
-        isSuccessResponse = true; 
-        }
-  } catch(error) {
-    console.log(error);
+    if (response.user) {
+      localStorage.setItem('token', response.user.accessToken);
+      isSuccessResponse = true;
+    }
+  } catch (error) {
+    console.error(error); // console.log(error)--> console.error(error)
   }
-                        
-  return isSuccessResponse;
-  };
 
+  return isSuccessResponse;
+};
 
 export const signUpUser = async (email: string, password: string) => {
   return createUserWithEmailAndPassword(auth, email, password);
 };
 
-// import auth from "./firebase";
 
-// const doSignInWithEmailAndPassword =  async(email, password) => {
-//     return SignInWithEmailAndPassword(auth, email, password);
-// };

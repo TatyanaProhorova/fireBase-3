@@ -11,6 +11,8 @@ type Props = {
   studentList: Student[];
 };
 
+
+
 export const GutterlessList = (props: Props) => {
   const { studentList } = props;
   // TODO: должен приходить props - массив студентов: []values
