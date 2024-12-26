@@ -6,6 +6,8 @@ export type Task = {
   theme: string[];
 };
 
-enum TypeTask {
-  Multi = 'multi'
+export enum TypeTask {
+  Multi = 'multi',
+  Single = 'single',
+  TextTask = 'textTask'
 }

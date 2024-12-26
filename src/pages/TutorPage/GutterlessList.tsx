@@ -7,6 +7,7 @@ import IconButton from '@mui/material/IconButton';
 import { useNavigate } from 'react-router-dom';
 import { Student } from '../../shared/types/user';
 
+
 type Props = {
   studentList: Student[];
 };
@@ -23,11 +24,7 @@ export const GutterlessList = (props: Props) => {
 
   console.log('studentList', studentList);
   return (
-    // <ul>
-    // {studentList.map((value) => (
-    //   <li key={value.surname}> {value.surname}</li>))}
-    // </ul>
-    //TODO: map по stydents
+
     <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
       {studentList.map((value) => (
         <ListItem

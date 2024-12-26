@@ -9,6 +9,12 @@ import { useNavigate, Link } from 'react-router-dom';
 import { Route, Routes } from 'react-router-dom';
 import Register from './pages/Register/Register';
 import Admin from './pages/Admin/Admin';
+import { ThemePage } from './pages/ThemePage/ThemePage';
+import { Themes } from './pages/Themes/Themes';
+
+
+import 'typeface-roboto'
+
 
 function App() {
   return (
@@ -26,6 +32,8 @@ function App() {
               студента для препода
               <Route path="/tutor" element={<TutorPage />} />
               <Route path="/profile/:email" element={<Profile />} />
+              <Route path="/themes" element={<Themes />} />
+              <Route path="/themes/:themeCode" element={<ThemePage />} />
             </Routes>
           </div>
         </main>
