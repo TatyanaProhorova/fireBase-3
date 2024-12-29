@@ -1,12 +1,7 @@
-
-
 export default function Test() {
-    return(
-      <>
-        <form>
-          
-        </form>
-      </>
-    )
-
+  return (
+    <>
+      <form></form>
+    </>
+  );
 }

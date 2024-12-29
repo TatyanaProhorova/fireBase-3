@@ -6,47 +6,41 @@ import { Button } from '@mui/material';
 import Single from '../../components/Single/Single';
 import { TextTask } from '../../components/TextTask/TextTask';
 
-
 export function TasksList() {
   const [taskList, setTaskList] = useState<Task[]>([]);
-// console.log("taskList", taskList);
+  // console.log("taskList", taskList);
   useEffect(() => {
-    getTasks().then(setTaskList)
+    getTasks().then(setTaskList);
   }, []);
   function renderList() {
     return taskList.map((item, index) => {
       switch (item.type) {
         case TypeTask.Multi:
-        return <Multi  key={index}
-                       description={item.description}
-                       options={item.options} />
+          return <Multi key={index} description={item.description} options={item.options} />;
 
         case TypeTask.Single:
-        return <Single key={index}
-                       description={item.description}
-                       options={item.options} />;
-        
+          return <Single key={index} description={item.description} options={item.options} />;
+
         case TypeTask.TextTask:
-        return <TextTask key={index}
-                         description={item.description} />;
-       
+          return <TextTask key={index} description={item.description} />;
+
         default:
-          return <span key={index}>Тип задания не поддерживается</span>
-       }
-    })
-}
+          return <span key={index}>Тип задания не поддерживается</span>;
+      }
+    });
+  }
 
   const updateTasks = () => {
     getTasks().then(setTaskList);
   };
 
   const getSingleTasks = () => {
-    getTasksByType<Task>(TypeTask.Single).then(setTaskList); 
-  }
+    getTasksByType<Task>(TypeTask.Single).then(setTaskList);
+  };
 
   const getMultiTasks = () => {
-    getTasksByType<Task>(TypeTask.Multi).then(setTaskList); 
-  }
+    getTasksByType<Task>(TypeTask.Multi).then(setTaskList);
+  };
   return (
     <>
       <Button onClick={updateTasks} variant="contained">

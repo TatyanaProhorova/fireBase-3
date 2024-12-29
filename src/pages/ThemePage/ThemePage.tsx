@@ -3,9 +3,8 @@ import { useParams } from 'react-router-dom';
 import { ThemeType } from '../../shared/types/themes';
 import { getThemeByCode } from '../../api/themes';
 
-
 export const ThemePage = () => {
-  const [themeData, setThemeData] = useState<ThemeType| null>(null);
+  const [themeData, setThemeData] = useState<ThemeType | null>(null);
 
   const [isLoading, setIsLoading] = useState(false);
 

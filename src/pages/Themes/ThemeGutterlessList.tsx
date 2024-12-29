@@ -11,40 +11,29 @@ import './style.css';
 import { CreateTestPayload } from '../../shared/types/tests';
 import { ChangeEvent, useState } from 'react';
 import QuantityInput from '../../shared/widgets/NumberInput/NumberInput';
-// import QuantityInput
 
 
 type Props = {
   themeList: ThemeType[];
   fields: CreateTestPayload;
+  changeCountFields: (themeCode: string, counter: string) => void      // number instead of string
 };
 
 export const ThemeGutterlessList = (props: Props) => {
-  const { themeList } = props;
+  const { themeList, fields, changeCountFields } = props;
   const navigate = useNavigate();
-  const goToTheme = (code: string) => {
+  const goToTheme = (code: string) => {    //  // number instead of string
     navigate(`/themes/${code}`);
   };
-  
-  const [fields, setFields] = useState({
-    code: '',
-    count: 0
-  });
-//TODO: Изменить иконку перехода на страницу темы
-const changeFields = (event: ChangeEvent<HTMLInputElement>) => {
-  setFields((currentField) => {
-    console.log('currentField', currentField);
-    return {
-      ...currentField,
-      [event.target.id]: event.target.value
-    };
-  });
-};
 
-//const [value, setValue] = useState<number | null>(null);
+
+  //TODO: Изменить иконку перехода на страницу темы
+
+
+
   console.log('themeList', themeList);
-  const [value, setValue] = useState<number | null>(null);
-  
+  //const [value, setValue] = useState<number | null>(null);
+
   return (
     <>
       {/* <div className="tableHeaders"> 
@@ -56,41 +45,33 @@ const changeFields = (event: ChangeEvent<HTMLInputElement>) => {
         </span>
       </div> */}
 
-      <List sx={{ width: '100%',
+      <List
+        sx={{
+          width: '100%',
           maxWidth: 900,
           bgcolor: 'background.paper',
           gap: 2,
-          display: "flex",
-          flexDirection: "column"}}>
+          display: 'flex',
+          flexDirection: 'column'
+        }}
+      >
+        {themeList.map((item, index) => (
+          <div key={item.code} className="classRow">
+            <ListItem
+              // onClick={() => goToTheme(item.code)}
+              disableGutters
+            >
+              <ListItemText primary={`${item.code} ${item.name}`} />
+            </ListItem>
 
-      {themeList.map((item, index) => ( 
+            <QuantityInput 
+              value={fields[item.code]}
+              changeTaskQuantity={(value) => changeCountFields(item.code, value)}
+            />
 
-          <div key={index}
-               className="classRow">                       
-              <ListItem
-                // onClick={() => goToTheme(item.code)}
-                disableGutters
-              >
-                <ListItemText primary={`${item.code} ${item.name}`} />
-              </ListItem>
-
-{/* 
-              <NumberInput
-                aria-label="Demo number input"
-                value={value}
-                onChange={(event, val) => setValue(val)}
-              /> */}
-
-              <NumberInput />
-              {/* <QuantityInput
-                value={value}
-                onChange={(event, val) => setValue(val)}
-              />  */}
-                      
           </div>
-      ))}
+        ))}
       </List>
     </>
-    
   );
 };

@@ -5,16 +5,15 @@ import { StudentPage } from './pages/StudentPage/StudentPage';
 import { Header } from './shared/components/Header/Header';
 import { Authorization } from './pages/Authorization/Authorization';
 import { Profile } from './pages/profilePage/Profile';
-import { useNavigate, Link } from 'react-router-dom';
+
 import { Route, Routes } from 'react-router-dom';
 import Register from './pages/Register/Register';
 import Admin from './pages/Admin/Admin';
 import { ThemePage } from './pages/ThemePage/ThemePage';
 import { Themes } from './pages/Themes/Themes';
-
-
-import 'typeface-roboto'
-
+import 'typeface-roboto';
+import { Tests } from './pages/Tests/Tests';
+import TestPage from './pages/TestPage/TestPage';
 
 function App() {
   return (
@@ -34,6 +33,8 @@ function App() {
               <Route path="/profile/:email" element={<Profile />} />
               <Route path="/themes" element={<Themes />} />
               <Route path="/themes/:themeCode" element={<ThemePage />} />
+              <Route path="/tests" element={<Tests />} />
+              <Route path="/tests/:testCode" element={<TestPage />} />
             </Routes>
           </div>
         </main>

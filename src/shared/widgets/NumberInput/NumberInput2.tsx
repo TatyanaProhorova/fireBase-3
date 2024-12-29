@@ -1,39 +1,23 @@
-import * as React from 'react';
-import { Unstable_NumberInput as BaseNumberInput, NumberInputProps } from '@mui/base/Unstable_NumberInput';
-import { styled } from '@mui/system';
-import RemoveIcon from '@mui/icons-material/Remove';
-import AddIcon from '@mui/icons-material/Add';
-
-type Props = NumberInputProps & {
-  onDecrement: () => void,
-  onIncrement: () => void
-}
-
-const NumberInput = React.forwardRef(function CustomNumberInput(
-  props: Props, 
-  ref: React.ForwardedRef<HTMLDivElement>
-) {
-  return (
-    <BaseNumberInput
-      slots={{
-        root: StyledInputRoot,
-        input: StyledInput,
-        incrementButton: StyledButton,
-        decrementButton: StyledButton
-      }}
-      slotProps={{
-
-        incrementButton: {
-          children: <AddIcon fontSize="small" />,
-          className: 'increment',
-          type: "button",
-          onClick: props.onIncrement
+export const NumberInput = React.forwardRef(function CustomNumberInput(
+    props: NumberInputProps,
+    ref: React.ForwardedRef<HTMLDivElement>,
+  ) {
+    return (
+<BaseNumberInput
+        slots={{
+          root: StyledInputRoot,
+          input: StyledInput,
+          incrementButton: StyledButton,
+          decrementButton: StyledButton,
+        }}
+        slotProps={{
+          incrementButton: {
+            children: <AddIcon fontSize="small" />,
+            className: 'increment',
         },
         decrementButton: {
           children: <RemoveIcon fontSize="small" />,
-          type: "button",
-          onClick: props.onDecrement
-        }
+        },
       }}
       {...props}
       ref={ref}
@@ -41,31 +25,8 @@ const NumberInput = React.forwardRef(function CustomNumberInput(
   );
 });
 
-type QuantitiInputProps = {
-  value: string;  // number instead of string
-  changeTaskQuantity: (value:string)=>(void); // number instead of string
-} 
-
-export default function QuantityInput({value, changeTaskQuantity}: QuantitiInputProps) {
-
-  const onIncrement = () => {
-
-    console.log("NEWvalue", value);
-    changeTaskQuantity((Number(value) + 1).toString());}
-
-    const onDecrement = () => {
-      changeTaskQuantity((Number(value) - 1).toString());
-  }
-  console.log('value', value);
-
-  return (
-    <NumberInput aria-label="Quantity Input" min={0} max={7}
-                 value={Number(value || 0)}                               
-                 onInputChange={(event) => changeTaskQuantity(event.target.value)}
-                 onIncrement={onIncrement}
-                 onDecrement={onDecrement}
-                 />
-  );
+export default function QuantityInput() {
+  return <NumberInput aria-label="Quantity Input" min={1} max={99} />;
 }
 
 const blue = {
@@ -76,7 +37,7 @@ const blue = {
   500: '#007fff',
   600: '#0072e5',
   700: '#0059B2',
-  800: '#004c99'
+  800: '#004c99',
 };
 
 const grey = {
@@ -89,7 +50,7 @@ const grey = {
   600: '#6B7A90',
   700: '#434D5B',
   800: '#303740',
-  900: '#1C2025'
+  900: '#1C2025',
 };
 
 const StyledInputRoot = styled('div')(
@@ -101,7 +62,7 @@ const StyledInputRoot = styled('div')(
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
-`
+`,
 );
 
 const StyledInput = styled('input')(
@@ -113,7 +74,9 @@ const StyledInput = styled('input')(
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-  box-shadow: 0 2px 4px ${theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.5)' : 'rgba(0,0,0, 0.05)'};
+  box-shadow: 0 2px 4px ${
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.5)' : 'rgba(0,0,0, 0.05)'
+  };
   border-radius: 8px;
   margin: 0 8px;
   padding: 10px 12px;
@@ -134,7 +97,7 @@ const StyledInput = styled('input')(
   &:focus-visible {
     outline: 0;
   }
-`
+`,
 );
 
 const StyledButton = styled('button')(
@@ -172,5 +135,5 @@ const StyledButton = styled('button')(
   &.increment {
     order: 1;
   }
-`
+`,
 );

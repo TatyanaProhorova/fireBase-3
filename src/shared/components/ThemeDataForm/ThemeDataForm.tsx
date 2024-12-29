@@ -1,20 +1,16 @@
-
 type Props = {
   onSuccess: () => void;
 };
 
 type OmitThemeTypeId = Omit<ThemeType, 'id'>;
 
-
-
 export const ThemeDataForm = (props: Props) => {
-
   const { onSuccess } = props;
 
   const [fields, setFields] = useState({
     code: '',
     name: ''
-  //  ,status: ''  //   пройдена   текущая   будущая
+    //  ,status: ''  //   пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ   пїЅпїЅпїЅпїЅпїЅпїЅпїЅ   пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
   });
 
   const changeFields = (event: ChangeEvent<HTMLInputElement>) => {
@@ -27,18 +23,15 @@ export const ThemeDataForm = (props: Props) => {
     });
   };
 
-
   return (
     <FormControl>
       <form onSubmit={sendForm} method="post">
         <div>
-          <FormLabel>Число заданий в тесте по темам</FormLabel>
+          <FormLabel>пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ</FormLabel>
         </div>
 
-
-        <Button type="submit"> отправить </Button>
+        <Button type="submit"> пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ </Button>
       </form>
     </FormControl>
   );
 };
-

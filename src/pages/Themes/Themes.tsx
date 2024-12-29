@@ -1,5 +1,4 @@
-﻿
-//import styles from './TutorPage.module.scss';
+﻿//import styles from './TutorPage.module.scss';
 
 import { useEffect, useState } from 'react';
 //import { StudentDataForm } from '../../shared/components/StudentDataForm/StudentDataForm';
@@ -9,49 +8,47 @@ import { ThemeGutterlessList } from './ThemeGutterlessList';
 import { Button } from '@mui/material';
 import { CreateTestPayload } from '../../shared/types/tests';
 
-
 export const Themes = () => {
-    const [themeList, setThemeList] = useState<ThemeType[]>([]);
-    
-    const [fields, setFields] = useState<CreateTestPayload>({});
-    
-    const getApiData = async () => {
-        const response = await getAllThemes();
-        setThemeList(response);
-    };
-  
-    // const changeFields = (themeCode: string, counter: number) => {
-    //   const changeFields = (event: ChangeEvent<HTMLInputElement>) => {
-    //     setFields((currentField) => {
-    //       console.log('currentField', currentField);
-    //       return {
-    //         ...currentField,
-    //         [event.target.id]: event.target.value
-    //       };
-    //     })}};
+  const [themeList, setThemeList] = useState<ThemeType[]>([]);
 
-    
+  const [fields, setFields] = useState<CreateTestPayload>({});
 
-    const createTest = () => {
-      //TODO: сделать
-    };
+  const getApiData = async () => {
+    const response = await getAllThemes();
+    setThemeList(response);
+  };
 
-  useEffect(
-    () => {
-      getApiData().catch(() => {
-        console.error('ошибка в getApiData');
-      });
-    }, []
-  );
+  const changeFields = (themeCode: string, counter: string) => {    // number instead of string
+    setFields((prevState)=>({
+      ...prevState,
+      [themeCode]: counter,  // для ключа - значения функции
+    }))
+  }
+ 
     
-return(
+  const createTest = () => {
+    //TODO: сделать
+  };
+
+  useEffect(() => {
+    getApiData().catch(() => {
+      console.error('ошибка в getApiData');
+    });
+  }, []);
+
+  console.log("fields", fields);
+
+  return (
     <>
       <form onSubmit={createTest}>
-        <ThemeGutterlessList themeList={themeList} fields={fields} />
-        {/* <Button type="submit" variant="contained">
+        <ThemeGutterlessList themeList={themeList} 
+                             fields={fields} 
+                             changeCountFields={changeFields}
+        />
+        <Button type="submit" variant="contained">
              Создать вариант
-        </Button> */}
-      </form>         
+        </Button>
+      </form>
     </>
-  )
-}
+  );
+};
