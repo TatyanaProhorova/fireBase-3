@@ -1,6 +1,7 @@
 import { addDoc, collection, deleteDoc, doc, getDocs, query, where } from 'firebase/firestore';
 import { db } from './fBStoreConstants';
 import { TestType } from '../shared/types/tests';
+import { getTasksByTheme } from './tasks';
 
 const testCollection = 'tests';
 /**
@@ -31,29 +32,29 @@ export const getAllTests = async () => {
 
 /**
  * Функция для записи параметров теста в коллекци> "tests"
- * @param {object} fields - { номер темы (number):число заданий (string) }
+ * @param {Record<string, string>} fields - { номер темы (number):число заданий (string) }
  */
 //fields - { номер темы (number):число заданий (string) }
 
- export const createTest = async (fields: object) => {
-//   const deleteObjectItemByValue = (Obj, val) => {
-//     for (var key in Obj) {
-//         if (Obj[key] == val) {
-//             delete Obj[key];
-//             return Obj;
-//         }
-//     }
-// };
-//  const deleteObjectItemByValue(fields, "0");
- 
+export const createTest = async (fields: Record<string, string>) => {
+
+const promises: Promise<any>[] = [];
+
+Object.keys(fields).forEach((key)=>{
+const promise = getTasksByTheme(key, Number(fields[key]));
+promises.push(promise);
+})
+const result = await  Promise.all(promises);
+const taskIds = result.reduce((item, accum) => {
+ return [...accum, ...item]
+}, []);
+console.log(taskIds);
   try {
     const testTime: Date = new Date();
-    const docRef = await addDoc(collection(db, 'tests'), {...fields,
-                                       "testTimestamp": testTime});
+    const docRef = await addDoc(collection(db, 'tests'), { ...fields, testTimestamp: testTime });
     console.log('Document written with ID: ', docRef.id);
     return docRef.id;
   } catch (e) {
     console.error('Error adding document: ', e);
   }
 };
-

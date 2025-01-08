@@ -6,28 +6,24 @@ import ListItemText from '@mui/material/ListItemText';
 // import IconButton from '@mui/material/IconButton';
 import { useNavigate } from 'react-router-dom';
 import { ThemeType } from '../../shared/types/themes';
-import NumberInput from '../../shared/widgets/NumberInput/NumberInput';
 import './style.css';
 import { CreateTestPayload } from '../../shared/types/tests';
-import { ChangeEvent, useState } from 'react';
 import QuantityInput from '../../shared/widgets/NumberInput/NumberInput';
 
 type Props = {
   themeList: ThemeType[];
   fields: CreateTestPayload;
-  changeCountFields: (themeCode: string, counter: string) => void; 
+  changeCountFields: (themeCode: string, counter: string) => void;
 };
 
 export const ThemeGutterlessList = (props: Props) => {
   const { themeList, fields, changeCountFields } = props;
   const navigate = useNavigate();
   const goToTheme = (code: string) => {
-    
     navigate(`/themes/${code}`);
   };
 
   //TODO: Изменить иконку перехода на страницу темы
-
 
   return (
     <>
@@ -51,13 +47,10 @@ export const ThemeGutterlessList = (props: Props) => {
         }}
       >
         {themeList.map((item, index) => (
-          <div key={index} className="classRow"> 
-          {/* // key=item.code
+          <div key={index} className="classRow">
+            {/* // key=item.code
           // key={index} */}
-            <ListItem
-              onClick={() => goToTheme(item.code)}
-              disableGutters
-            >
+            <ListItem onClick={() => goToTheme(item.code)} disableGutters>
               <ListItemText primary={`${item.code} ${item.name}`} />
             </ListItem>
 

@@ -1,14 +1,8 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 export default function TestPage() {
-
-  return (
-
-
-
-  <span>На этой странице должен быть ТЕСТ</span>
-  );
+  return <span>На этой странице должен быть ТЕСТ</span>;
 }
 // export const TestPage = () => {
 //   const [testData, setTestData] = useState<TestType | null>(null);

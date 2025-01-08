@@ -23,7 +23,6 @@ function App() {
         <main>
           <div className="content">
             Some content
-          
             <Routes>
               <Route path="/admin" element={<Admin />} />
               <Route path="/login" element={<Authorization />} />

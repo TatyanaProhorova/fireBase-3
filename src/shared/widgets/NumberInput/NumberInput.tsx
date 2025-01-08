@@ -4,34 +4,34 @@ import { styled } from '@mui/system';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 
-
 const NumberInput = React.forwardRef(function CustomNumberInput(
   props: NumberInputProps,
-  ref: React.ForwardedRef<HTMLDivElement>) {
-    return (
-      <BaseNumberInput
-        slots={{
-          root: StyledInputRoot,
-          input: StyledInput,
-          incrementButton: StyledButton,
-          decrementButton: StyledButton
-        }}
-        slotProps={{
-          incrementButton: {
-            children: <AddIcon fontSize="small" />,
-            className: 'increment',
-            type: 'button',
-          },
-          decrementButton: {
-            children: <RemoveIcon fontSize="small" />,
-            type: 'button',
-          }
-        }}
-        {...props}
-        ref={ref}
-      />
-    );
-  });
+  ref: React.ForwardedRef<HTMLDivElement>
+) {
+  return (
+    <BaseNumberInput
+      slots={{
+        root: StyledInputRoot,
+        input: StyledInput,
+        incrementButton: StyledButton,
+        decrementButton: StyledButton
+      }}
+      slotProps={{
+        incrementButton: {
+          children: <AddIcon fontSize="small" />,
+          className: 'increment',
+          type: 'button'
+        },
+        decrementButton: {
+          children: <RemoveIcon fontSize="small" />,
+          type: 'button'
+        }
+      }}
+      {...props}
+      ref={ref}
+    />
+  );
+});
 
 type QuantitiInputProps = {
   value: string;
@@ -39,18 +39,17 @@ type QuantitiInputProps = {
 };
 
 export default function QuantityInput({ value, changeTaskQuantity }: QuantitiInputProps) {
-
-  console.log('value', value);  
+  console.log('value', value);
 
   return (
-
     <NumberInput
       min={0}
       max={7}
       aria-label="Demo number input"
       placeholder="number"
       value={Number(value) || 0}
-      onChange={(event, val) => changeTaskQuantity(String(val) || '0')} />
+      onChange={(event, val) => changeTaskQuantity(String(val) || '0')}
+    />
   );
 }
 
