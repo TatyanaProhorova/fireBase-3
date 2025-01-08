@@ -4,67 +4,53 @@ import { styled } from '@mui/system';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 
-type Props = NumberInputProps & {
-  onDecrement: () => void,
-  onIncrement: () => void
-}
 
 const NumberInput = React.forwardRef(function CustomNumberInput(
-  props: Props, 
-  ref: React.ForwardedRef<HTMLDivElement>
-) {
-  return (
-    <BaseNumberInput
-      slots={{
-        root: StyledInputRoot,
-        input: StyledInput,
-        incrementButton: StyledButton,
-        decrementButton: StyledButton
-      }}
-      slotProps={{
-
-        incrementButton: {
-          children: <AddIcon fontSize="small" />,
-          className: 'increment',
-          type: "button",
-          onClick: props.onIncrement
-        },
-        decrementButton: {
-          children: <RemoveIcon fontSize="small" />,
-          type: "button",
-          onClick: props.onDecrement
-        }
-      }}
-      {...props}
-      ref={ref}
-    />
-  );
-});
+  props: NumberInputProps,
+  ref: React.ForwardedRef<HTMLDivElement>) {
+    return (
+      <BaseNumberInput
+        slots={{
+          root: StyledInputRoot,
+          input: StyledInput,
+          incrementButton: StyledButton,
+          decrementButton: StyledButton
+        }}
+        slotProps={{
+          incrementButton: {
+            children: <AddIcon fontSize="small" />,
+            className: 'increment',
+            type: 'button',
+          },
+          decrementButton: {
+            children: <RemoveIcon fontSize="small" />,
+            type: 'button',
+          }
+        }}
+        {...props}
+        ref={ref}
+      />
+    );
+  });
 
 type QuantitiInputProps = {
-  value: string;  // number instead of string
-  changeTaskQuantity: (value:string)=>(void); // number instead of string
-} 
+  value: string;
+  changeTaskQuantity: (value: string) => void; // number instead of string
+};
 
-export default function QuantityInput({value, changeTaskQuantity}: QuantitiInputProps) {
+export default function QuantityInput({ value, changeTaskQuantity }: QuantitiInputProps) {
 
-  const onIncrement = () => {
-
-    console.log("NEWvalue", value);
-    changeTaskQuantity((Number(value) + 1).toString());}
-
-    const onDecrement = () => {
-      changeTaskQuantity((Number(value) - 1).toString());
-  }
-  console.log('value', value);
+  console.log('value', value);  
 
   return (
-    <NumberInput aria-label="Quantity Input" min={0} max={7}
-                 value={Number(value || 0)}                               
-                 onInputChange={(event) => changeTaskQuantity(event.target.value)}
-                 onIncrement={onIncrement}
-                 onDecrement={onDecrement}
-                 />
+
+    <NumberInput
+      min={0}
+      max={7}
+      aria-label="Demo number input"
+      placeholder="number"
+      value={Number(value) || 0}
+      onChange={(event, val) => changeTaskQuantity(String(val) || '0')} />
   );
 }
 

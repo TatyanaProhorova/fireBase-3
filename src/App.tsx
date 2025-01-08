@@ -23,6 +23,7 @@ function App() {
         <main>
           <div className="content">
             Some content
+          
             <Routes>
               <Route path="/admin" element={<Admin />} />
               <Route path="/login" element={<Authorization />} />
@@ -34,7 +35,7 @@ function App() {
               <Route path="/themes" element={<Themes />} />
               <Route path="/themes/:themeCode" element={<ThemePage />} />
               <Route path="/tests" element={<Tests />} />
-              <Route path="/tests/:testCode" element={<TestPage />} />
+              <Route path="/tests/:testTime" element={<TestPage />} />
             </Routes>
           </div>
         </main>

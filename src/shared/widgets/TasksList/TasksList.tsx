@@ -50,7 +50,7 @@ export function TasksList() {
         отобразить задания с одним правильным вариантом ответа
       </Button>
       <Button onClick={getMultiTasks} variant="contained">
-        отобразить задания с несколькими правильным вариантами ответов
+        отобразить задания с несколькими правильными вариантами ответов
       </Button>
       {renderList()}
     </>

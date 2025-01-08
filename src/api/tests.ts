@@ -4,7 +4,7 @@ import { TestType } from '../shared/types/tests';
 
 const testCollection = 'tests';
 /**
- * Функция для получения типов заданий
+ * Функция для получения всех тестов коллекции "tests"
  */
 
 export const getAllTests = async () => {
@@ -28,3 +28,32 @@ export const getAllTests = async () => {
   }
   return result;
 };
+
+/**
+ * Функция для записи параметров теста в коллекци> "tests"
+ * @param {object} fields - { номер темы (number):число заданий (string) }
+ */
+//fields - { номер темы (number):число заданий (string) }
+
+ export const createTest = async (fields: object) => {
+//   const deleteObjectItemByValue = (Obj, val) => {
+//     for (var key in Obj) {
+//         if (Obj[key] == val) {
+//             delete Obj[key];
+//             return Obj;
+//         }
+//     }
+// };
+//  const deleteObjectItemByValue(fields, "0");
+ 
+  try {
+    const testTime: Date = new Date();
+    const docRef = await addDoc(collection(db, 'tests'), {...fields,
+                                       "testTimestamp": testTime});
+    console.log('Document written with ID: ', docRef.id);
+    return docRef.id;
+  } catch (e) {
+    console.error('Error adding document: ', e);
+  }
+};
+

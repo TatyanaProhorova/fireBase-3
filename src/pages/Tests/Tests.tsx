@@ -9,12 +9,10 @@ import { getAllTests } from '../../api/tests';
 export const Tests = () => {
   const [testList, setTestList] = useState<TestType[]>([]);
 
-
   const getApiData = async () => {
     const response = await getAllTests();
     setTestList(response);
   };
-
 
   useEffect(() => {
     getApiData().catch(() => {
@@ -22,7 +20,5 @@ export const Tests = () => {
     });
   }, []);
 
-  return (
-        <TestGutterlessList testList={testList}  />
-  );
+  return <TestGutterlessList testList={testList} />;
 };

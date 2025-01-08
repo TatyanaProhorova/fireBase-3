@@ -12,27 +12,22 @@ import { CreateTestPayload } from '../../shared/types/tests';
 import { ChangeEvent, useState } from 'react';
 import QuantityInput from '../../shared/widgets/NumberInput/NumberInput';
 
-
 type Props = {
   themeList: ThemeType[];
   fields: CreateTestPayload;
-  changeCountFields: (themeCode: string, counter: string) => void      // number instead of string
+  changeCountFields: (themeCode: string, counter: string) => void; 
 };
 
 export const ThemeGutterlessList = (props: Props) => {
   const { themeList, fields, changeCountFields } = props;
   const navigate = useNavigate();
-  const goToTheme = (code: string) => {    //  // number instead of string
+  const goToTheme = (code: string) => {
+    
     navigate(`/themes/${code}`);
   };
 
-
   //TODO: Изменить иконку перехода на страницу темы
 
-
-
-  console.log('themeList', themeList);
-  //const [value, setValue] = useState<number | null>(null);
 
   return (
     <>
@@ -56,19 +51,20 @@ export const ThemeGutterlessList = (props: Props) => {
         }}
       >
         {themeList.map((item, index) => (
-          <div key={item.code} className="classRow">
+          <div key={index} className="classRow"> 
+          {/* // key=item.code
+          // key={index} */}
             <ListItem
-              // onClick={() => goToTheme(item.code)}
+              onClick={() => goToTheme(item.code)}
               disableGutters
             >
               <ListItemText primary={`${item.code} ${item.name}`} />
             </ListItem>
 
-            <QuantityInput 
+            <QuantityInput
               value={fields[item.code]}
               changeTaskQuantity={(value) => changeCountFields(item.code, value)}
             />
-
           </div>
         ))}
       </List>
