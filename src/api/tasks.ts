@@ -55,17 +55,17 @@ export const getTasksByType = async <T>(type: TypeTask) => {
 
 /**
  * Функция для получения заданий по теме
- * @param {string} theme - тема задания 
- * @param {number} count - количество задания 
+ * @param {string} theme - тема задания
+ * @param {number} count - количество задания
  */
-export const getTasksByTheme = async <T>(theme: string, count: number ) => {
+export const getTasksByTheme = async <T>(theme: string, count: number) => {
   const result: T[] = [];
   try {
     const q = query(collection(db, taskCollection), where('theme', 'array-contains', theme));
     const docsSnapshot = await getDocs(q);
 
     docsSnapshot.forEach((doc) => {
-         const data = {
+      const data = {
         id: doc.id,
         ...doc.data()
       };
@@ -75,7 +75,7 @@ export const getTasksByTheme = async <T>(theme: string, count: number ) => {
   } catch (error) {
     console.error(error);
   }
-      // @ts-ignore
-  const shuffledDocs = result.sort(() => Math.random() - 0.5).map((value) => value.id)
+  // @ts-ignore
+  const shuffledDocs = result.sort(() => Math.random() - 0.5).map((value) => value.id);
   return shuffledDocs.slice(0, count);
 };

@@ -19,18 +19,19 @@ export const Themes = () => {
   };
 
   const changeFields = (themeCode: string, counter: string) => {
-    if (counter === '0') {
-      setFields((prevState) => {
-        delete prevState[themeCode];
-        return prevState;
-      });
-      return;
-    }
-    setFields((prevState) => ({
+    // if (counter === '4') {
+    //   setFields((prevState) => {  
+    //     delete prevState[themeCode];
+    //     return prevState;
+    //   });
+    //   return;
+    // } else {
+      setFields((prevState) => ({
       ...prevState,
-      [themeCode]: counter // для ключа - значения (функции??) - параметра?
-    }));
-  };
+      [themeCode]: counter // для ключа - параметра?
+      }));
+    } 
+  // };
 
   const navigate = useNavigate();
 
@@ -52,19 +53,22 @@ export const Themes = () => {
   console.log('fields', fields);
   return (
     <>
+    
       <form onSubmit={createNewTest}>
-        <ThemeGutterlessList themeList={themeList} fields={fields} changeCountFields={changeFields} />
+        <ThemeGutterlessList themeList={themeList}
+                             fields={fields} 
+                             changeCountFields={changeFields} />
         {Object.keys(fields).length && (
           <div>
-            <div className='grid_container'>
-                  <div>тема:</div> 
-                  <div>количество заданий: </div>
+            <div className="grid_container">
+              <div>тема:</div>
+              <div>количество заданий: </div>
             </div>
             {Object.keys(fields).map((key) => {
               const theme = themeList.filter((value) => value.code === key)[0];
               return (
-                <div className='grid_container'>                           
-                  <div>{theme.name}</div>                          
+                <div className="grid_container">
+                  <div>{theme.name}</div>
                   <div>{fields[key]}</div>
                 </div>
               );
