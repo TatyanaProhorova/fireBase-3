@@ -7,7 +7,7 @@ import AddIcon from '@mui/icons-material/Add';
 const NumberInput = React.forwardRef(function CustomNumberInput(
   props: NumberInputProps,
   ref: React.ForwardedRef<HTMLDivElement>,
-  onInputChange: React.ChangeEventHandler<HTMLInputElement>  //////
+
 ) {
   return (
     <BaseNumberInput
@@ -36,33 +36,25 @@ const NumberInput = React.forwardRef(function CustomNumberInput(
 
 type QuantitiInputProps = {
   value: string;
-  changeTaskQuantity: (value: string) => void; 
+  changeTaskQuantity: (value: string) => void;
 };
 
 export default function QuantityInput({ value, changeTaskQuantity }: QuantitiInputProps) {
-
   return (
-
-
     <NumberInput
-  
-      min={0}
+      min={-1}
       max={77}
-
       onInputChange={(event) => {
-      let inputValue = Number(event.target.value);
+        let inputValue = Number(event.target.value);
 
-      if (inputValue > max) {inputValue = max};
-
-      changeTaskQuantity(String(inputValue) || '0'); 
+          changeTaskQuantity(String(inputValue) || '0');
       }}
-
       aria-label="Demo number input"
       placeholder="number"
       value={Number(value) || 0}
-      // onChange={(event, val) => changeTaskQuantity(String(val) || '0')}
-      onChange={(event, val) => changeTaskQuantity(String(val) || '0')}
-    />
+      onChange={(_, val) => changeTaskQuantity(String(val) || '0')}
+     
+    />   
   );
 }
 

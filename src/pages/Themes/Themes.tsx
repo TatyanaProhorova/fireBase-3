@@ -19,30 +19,31 @@ export const Themes = () => {
   };
 
   const changeFields = (themeCode: string, counter: string) => {
-    // if (counter === '4') {
-    //   setFields((prevState) => {  
-    //     delete prevState[themeCode];
-    //     return prevState;
-    //   });
-    //   return;
-    // } else {
-      setFields((prevState) => ({
+
+    setFields((prevState) => ({
       ...prevState,
-      [themeCode]: counter // для ключа - параметра?
-      }));
-    } 
-  // };
+      [themeCode]: counter 
+    })
+    );
+  };
 
   const navigate = useNavigate();
-
+  
   const createNewTest = async (event: FormEvent) => {
-    event.preventDefault();
-    const response = await createTest(fields);
 
+    event.preventDefault();
+    const fieldsNotNull = {...fields};
+    Object.keys(fieldsNotNull).forEach((i)=> {if (fieldsNotNull[i] === "0") delete fieldsNotNull[i];}); // !!!! перед передачей параметрга fields - отфильтровать по count != "0"
+    
+    console.log("fieldsNotNull", fieldsNotNull);
+    const response = await createTest(fieldsNotNull); // !!!! перед передачей параметрга fields - отфильтровать по count != "0"
     if (response) {
       navigate(`/tests/${response}`); // id теста
+
+      
     }
   };
+
 
   useEffect(() => {
     getApiData().catch(() => {
@@ -53,26 +54,26 @@ export const Themes = () => {
   console.log('fields', fields);
   return (
     <>
-    
+    <div>
+      Выберите количество заданий по темам
+    </div>
       <form onSubmit={createNewTest}>
-        <ThemeGutterlessList themeList={themeList}
-                             fields={fields} 
-                             changeCountFields={changeFields} />
-        {Object.keys(fields).length && (
+        <ThemeGutterlessList themeList={themeList} fields={fields} changeCountFields={changeFields} />
+        {(Object.keys(fields).length !== 0) && (
           <div>
             <div className="grid_container">
               <div>тема:</div>
               <div>количество заданий: </div>
             </div>
-            {Object.keys(fields).map((key) => {
-              const theme = themeList.filter((value) => value.code === key)[0];
-              return (
-                <div className="grid_container">
-                  <div>{theme.name}</div>
-                  <div>{fields[key]}</div>
-                </div>
-              );
-            })}
+              {Object.keys(fields).map((item, index) => {
+                const theme = themeList.filter((value) => value.code === item)[0];
+              return (    (fields[item] !== "0") &&       
+                    <div key={index} className="grid_container">
+                      <div>{theme.name}</div>
+                      <div>{fields[item]}</div>                
+                    </div>                     
+                );
+              })}
           </div>
         )}
 

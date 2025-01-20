@@ -27,15 +27,6 @@ export const ThemeGutterlessList = (props: Props) => {
 
   return (
     <>
-      {/* <div className="tableHeaders"> 
-        <span>
-          Темы
-        </span>
-        <span>
-          Число заданий по теме
-        </span>
-      </div> */}
-
       <List
         sx={{
           width: '100%',
