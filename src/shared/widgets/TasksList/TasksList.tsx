@@ -6,14 +6,20 @@ import { Button } from '@mui/material';
 import Single from '../../components/Single/Single';
 import { TextTask } from '../../components/TextTask/TextTask';
 
-export function TasksList() {
-  const [taskList, setTaskList] = useState<Task[]>([]);
+interface Props {
+  list: Task[]
+}
+
+export function TasksList(props: Props) {
+//  const [taskList, setTaskList] = useState<Task[]>([]);
   // console.log("taskList", taskList);
-  useEffect(() => {
-    getTasks().then(setTaskList);
-  }, []);
+  // useEffect(() => {
+  //   getTasks().then(setTaskList);
+  // }, []);
+  const {list} = props;
+  console.log('list', list);
   function renderList() {
-    return taskList.map((item, index) => {
+    return list.map((item, index) => {
       switch (item.type) {
         case TypeTask.Multi:
           return <Multi key={index} description={item.description} options={item.options} />;
@@ -29,21 +35,21 @@ export function TasksList() {
       }
     });
   }
+// на страницу - всех заданий
+  // const updateTasks = () => {
+  //   getTasks().then(setTaskList);
+  // };
 
-  const updateTasks = () => {
-    getTasks().then(setTaskList);
-  };
+  // const getSingleTasks = () => {
+  //   getTasksByType<Task>(TypeTask.Single).then(setTaskList);
+  // };
 
-  const getSingleTasks = () => {
-    getTasksByType<Task>(TypeTask.Single).then(setTaskList);
-  };
-
-  const getMultiTasks = () => {
-    getTasksByType<Task>(TypeTask.Multi).then(setTaskList);
-  };
+  // const getMultiTasks = () => {
+  //   getTasksByType<Task>(TypeTask.Multi).then(setTaskList);
+  // };
   return (
     <>
-      <Button onClick={updateTasks} variant="contained">
+      {/* <Button onClick={updateTasks} variant="contained">
         обновить задания
       </Button>
       <Button onClick={getSingleTasks} variant="contained">
@@ -51,7 +57,7 @@ export function TasksList() {
       </Button>
       <Button onClick={getMultiTasks} variant="contained">
         отобразить задания с несколькими правильными вариантами ответов
-      </Button>
+      </Button> */}
       {renderList()}
     </>
   );

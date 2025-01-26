@@ -6,8 +6,7 @@ import AddIcon from '@mui/icons-material/Add';
 
 const NumberInput = React.forwardRef(function CustomNumberInput(
   props: NumberInputProps,
-  ref: React.ForwardedRef<HTMLDivElement>,
-
+  ref: React.ForwardedRef<HTMLDivElement>
 ) {
   return (
     <BaseNumberInput
@@ -47,14 +46,13 @@ export default function QuantityInput({ value, changeTaskQuantity }: QuantitiInp
       onInputChange={(event) => {
         let inputValue = Number(event.target.value);
 
-          changeTaskQuantity(String(inputValue) || '0');
+        changeTaskQuantity(String(inputValue) || '0');
       }}
       aria-label="Demo number input"
       placeholder="number"
       value={Number(value) || 0}
       onChange={(_, val) => changeTaskQuantity(String(val) || '0')}
-     
-    />   
+    />
   );
 }
 
