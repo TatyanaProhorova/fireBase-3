@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-
 import { getById } from '../../api/common';
 
 // import styles from './StudentPage.module.scss';

@@ -4,6 +4,6 @@ export type TestType = {
   coveredThemes: string[];
   testContent: string[];
   timestamp: Data;
-//  name: string;
+  //  name: string;
   forStudent?: string;
 };

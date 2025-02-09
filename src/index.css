@@ -169,7 +169,7 @@ border: 2px solid #436fea;
 .content {
   height: 100%;
   width: 100%;
-  margin: 0 30px 0 256px;
+  margin: 0 30px 0 30px;
   background-color: red;
   background-color: white;
   opacity: 50%;

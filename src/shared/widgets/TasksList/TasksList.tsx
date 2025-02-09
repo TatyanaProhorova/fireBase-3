@@ -7,17 +7,17 @@ import Single from '../../components/Single/Single';
 import { TextTask } from '../../components/TextTask/TextTask';
 
 interface Props {
-  list: Task[]
+  list: Task[];
 }
 
 export function TasksList(props: Props) {
-//  const [taskList, setTaskList] = useState<Task[]>([]);
+  //  const [taskList, setTaskList] = useState<Task[]>([]);
   // console.log("taskList", taskList);
   // useEffect(() => {
   //   getTasks().then(setTaskList);
   // }, []);
-  const {list} = props;
-  console.log('list', list);
+  const { list } = props;
+console.log('list', list);
   function renderList() {
     return list.map((item, index) => {
       switch (item.type) {
@@ -35,7 +35,7 @@ export function TasksList(props: Props) {
       }
     });
   }
-// на страницу - всех заданий
+  // на страницу - всех заданий
   // const updateTasks = () => {
   //   getTasks().then(setTaskList);
   // };

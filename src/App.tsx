@@ -1,4 +1,4 @@
-// import './App.scss';
+import './App.scss';
 import { Sidebar } from './shared/components/Sidebar/Sidebar';
 import { TutorPage } from './pages/TutorPage/TutorPage';
 import { StudentPage } from './pages/StudentPage/StudentPage';
@@ -15,14 +15,17 @@ import 'typeface-roboto';
 import { Tests } from './pages/Tests/Tests';
 import TestPage from './pages/TestPage/TestPage';
 
+
 function App() {
+
   return (
+
     <div className="app_container">
-      <Header />
-      <div className="layout">
+      <Header  />
+
         <main>
           <div className="content">
-            Some content
+
             <Routes>
               <Route path="/admin" element={<Admin />} />
               <Route path="/login" element={<Authorization />} />
@@ -39,7 +42,7 @@ function App() {
           </div>
         </main>
       </div>
-    </div>
+
   );
 }
 

@@ -14,12 +14,14 @@ export const TestGutterlessList = (props: Props) => {
   const { testList } = props;
   const navigate = useNavigate();
   const goToTest = (id: string) => {
-    navigate(`/test/${id}`);
+    navigate(`/tests/${id}`);
   };
 
   console.log('testList', testList);
   return (
-    <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+    <List sx={{ width: '100%',
+                maxWidth: 360,
+                bgcolor: 'background.paper' }}>
       {testList.map((value) => (
         <ListItem
           onClick={() => goToTest(value.id)}

@@ -37,7 +37,7 @@ export const Profile = () => {
       <div>У Вас новое задание по биологии</div>
       <br />
       <br />
-      <TasksList />
+      {/* <TasksList  /> */}
     </>
   );
 };
