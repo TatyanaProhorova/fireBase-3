@@ -19,9 +19,7 @@ export const TestGutterlessList = (props: Props) => {
 
   console.log('testList', testList);
   return (
-    <List sx={{ width: '100%',
-                maxWidth: 360,
-                bgcolor: 'background.paper' }}>
+    <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
       {testList.map((value) => (
         <ListItem
           onClick={() => goToTest(value.id)}

@@ -50,7 +50,6 @@ export const Authorization = () => {
     event.preventDefault();
     const isSuccessResponse = await loginUser(fields.email, fields.password);
     if (isSuccessResponse) {
-      
       nav(`/profile/${fields.email}`);
     } else {
       setErrorMessage('Ошибка авторизации');

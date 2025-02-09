@@ -17,7 +17,7 @@ export function TasksList(props: Props) {
   //   getTasks().then(setTaskList);
   // }, []);
   const { list } = props;
-console.log('list', list);
+  console.log('list', list);
   function renderList() {
     return list.map((item, index) => {
       switch (item.type) {

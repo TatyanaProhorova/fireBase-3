@@ -8,8 +8,7 @@ import { TestType } from '../../shared/types/tests';
 import { CircularProgress } from '@mui/material';
 
 export default function TestPage() {
-
-console.log('HERE');
+  console.log('HERE');
 
   const [isLoading, setIsLoading] = useState(false);
   const [taskList, setTaskList] = useState<Task[]>([]);
@@ -17,31 +16,28 @@ console.log('HERE');
 
   const getTestById = async (testID: string | undefined) => {
     let result: Task[] = [];
-  
+
     if (testID) {
       setIsLoading(true);
-      const testData = await getById<TestType>("tests", testID); // получаем данные теста
+      const testData = await getById<TestType>('tests', testID); // получаем данные теста
       if (testData && testData.testContent) {
         // используем Promise.all для ожидания всех асинхронных операций
         const tasks = await Promise.all(
           testData.testContent.map(async (id: string) => {
-            const task = await getById<Task>("tasks", id); 
+            const task = await getById<Task>('tasks', id);
             return task;
-
           })
         );
-  
+
         result = tasks.filter((i) => i !== null);
         setIsLoading(false);
       }
     } else {
-      console.log("testID не найден");
+      console.log('testID не найден');
     }
-  console.log(result);
-    return result; 
+    console.log(result);
+    return result;
   };
-  
-
 
   // const getTestById = async (testID: string | undefined) => {
   //   const result: Task[] = [];
@@ -70,13 +66,9 @@ console.log('HERE');
   }, [testID]);
 
   return (
-    
     <>
-      <span>На этой странице должен быть ТЕСТ</span>;
-      {/* {isLoading ? <CircularProgress /> : */}
-      
-        <TasksList list={taskList} />
-
+      <span>На этой странице должен быть ТЕСТ</span>;{/* {isLoading ? <CircularProgress /> : */}
+      <TasksList list={taskList} />
       {/* } */}
     </>
   );
