@@ -1,32 +1,28 @@
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-// https://mui.com/material-ui/react-list/
 import ListItemText from '@mui/material/ListItemText';
 import CommentIcon from '@mui/icons-material/Comment';
 import IconButton from '@mui/material/IconButton';
 import { useNavigate } from 'react-router-dom';
-import { Student } from '../../shared/types/user';
+import { TestType } from '../../shared/types/tests';
 
 type Props = {
-  studentList: Student[];
+  testList: TestType[];
 };
 
-export const GutterlessList = (props: Props) => {
-  const { studentList } = props;
-  // TODO: должен приходить props - массив студентов: []values
+export const TestGutterlessList = (props: Props) => {
+  const { testList } = props;
   const navigate = useNavigate();
-  const goToStudent = (id: string) => {
-    // id: number  ->  surname: string
-    //navigate(`/student/${id}`);  // динамическая строка
-    navigate(`/student/${id}`);
+  const goToTest = (id: string) => {
+    navigate(`/tests/${id}`);
   };
 
-  console.log('studentList', studentList);
+  console.log('testList', testList);
   return (
     <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-      {studentList.map((value) => (
+      {testList.map((value) => (
         <ListItem
-          onClick={() => goToStudent(value.id)}
+          onClick={() => goToTest(value.id)}
           key={value.id}
           disableGutters
           secondaryAction={
@@ -35,7 +31,7 @@ export const GutterlessList = (props: Props) => {
             </IconButton>
           }
         >
-          <ListItemText primary={`${value.surname} ${value.name}`} />
+          <ListItemText primary={`${value.id} ${value.name}`} />
         </ListItem>
       ))}
     </List>

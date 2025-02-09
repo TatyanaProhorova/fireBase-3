@@ -1,0 +1,14 @@
+.tableHeaders {
+  position: fixed;
+  width: 100%;
+  height: 20%;
+}
+
+.classRow {
+  display: inline-grid;
+  gap: 20px;
+  width: 100%;
+  grid-auto-flow: column;
+  justify-content: space-between;
+  align-items: center;
+}

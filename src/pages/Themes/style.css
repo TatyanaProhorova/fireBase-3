@@ -1,0 +1,21 @@
+.tableHeaders {
+  position: fixed;
+  width: 100%;
+  height: 20%;
+}
+
+.classRow {
+  display: inline-grid;
+  gap: 20px;
+  width: 100%;
+  grid-auto-flow: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.grid_container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 40px;
+  gap: 30px, 40px;
+}

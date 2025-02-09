@@ -18,6 +18,8 @@ export type Teacher = {
   id: string;
   surname: string;
   name: string;
+  biology?: boolean; ////
+  chemistry?: boolean; ////
 };
 
 export type User = {

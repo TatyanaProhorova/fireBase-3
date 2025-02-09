@@ -1,0 +1,7 @@
+.textTask {
+  margin: 24px;
+}
+
+div.textTask:focus. div.textTaskDescription {
+  background-color: rgb(255, 0, 0);
+}

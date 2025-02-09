@@ -1,107 +1,89 @@
-import { FormEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 import { signUpUser } from '../../api/authorize';
-//import { useAuth } from "../../contexts/authContext/AuthContext";
+import { Button, TextField } from '@mui/material';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
-import { useAuth } from '../../contexts/authContext/AuthContext';
+
+import { confirmPasswordReset } from '@firebase/auth'; // изменить пароль
 
 const Register = () => {
+  const [isRegistering, setIsRegistering] = useState(false); //
+  const [fields, setFields] = useState({
+    email: '',
+    password: '',
+    confirmPassword: ''
+  });
   const navigate = useNavigate();
-  const { userLoggedIn } = useAuth();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [isRegistering, setIsRegistering] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState(''); // пароли нае совпадают
 
-  const onSubmit = async (e: FormEvent) => {
+  const onSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (!isRegistering) {
-      if (confirmPassword == password) {
+      if (fields.confirmPassword == fields.password) {
         setIsRegistering(true);
-        await signUpUser(email, password);
+        signUpUser(fields.email, fields.password)
+          .then(() => {
+            navigate('/login');
+          })
+          .catch(() => {
+            setErrorMessage('Ошибка сервера');
+          })
+          .finally(() => {
+            setIsRegistering(false);
+          });
       } else {
-        setErrorMessage('Пароли не совпдают'); // м б переменные
+        setErrorMessage('Пароли не совпадают'); // в set...  м передавться переменные-константы, (функции-редко)
       }
     }
   };
 
-  console.log(userLoggedIn);
+  const changeFields = (event: ChangeEvent<HTMLInputElement>) => {
+    setErrorMessage('');
+    setFields((currentField) => {
+      console.log('currentField', currentField);
+      return {
+        ...currentField,
+        [event.target.id]: event.target.value
+      };
+    });
+  };
+
   return (
     <>
-      {userLoggedIn && <Navigate to={'/home'} replace={true} />}
-
-      <main className="w-full h-screen flex self-center place-content-center place-items-center">
-        <div className="w-96 text-gray-600 space-y-5 p-4 shadow-xl border rounded-xl">
-          <div className="text-center mb-6">
-            <div className="mt-2">
-              <h3 className="text-gray-800 text-xl font-semibold sm:text-2xl">Create a New Account</h3>
-            </div>
-          </div>
-          <form onSubmit={onSubmit} className="space-y-4">
-            <div>
-              <label className="text-sm text-gray-600 font-bold">Email</label>
-              <input
-                type="email"
-                autoComplete="email"
-                required
-                value={email}
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                }}
-                className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:indigo-600 shadow-sm rounded-lg transition duration-300"
-              />
-            </div>
-
-            <div>
-              <label className="text-sm text-gray-600 font-bold">Password</label>
-              <input
-                disabled={isRegistering}
-                type="password"
-                autoComplete="new-password"
-                required
-                value={password}
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                }}
-                className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg transition duration-300"
-              />
-            </div>
-
-            <div>
-              <label className="text-sm text-gray-600 font-bold">Confirm Password</label>
-
-              <input
-                disabled={isRegistering}
-                type="password"
-                autoComplete="off"
-                required
-                value={confirmPassword}
-                onChange={(e) => {
-                  setConfirmPassword(e.target.value);
-                }}
-                className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg transition duration-300"
-              />
-            </div>
-
-            {errorMessage && <span className="text-red-600 font-bold">{errorMessage}</span>}
-
-            <button
-              type="submit"
-              disabled={isRegistering}
-              className={`w-full px-4 py-2 text-white font-medium rounded-lg ${isRegistering ? 'bg-gray-300 cursor-not-allowed' : 'bg-indigo-600 hover:bg-indigo-700 hover:shadow-xl transition duration-300'}`}
-            >
-              {isRegistering ? 'Signing Up...' : 'Sign Up'}
+      <div className="form_auth_block">
+        <div className="form_auth_block_content">
+          <p className="form_auth_block_head_text">Создать аккаунт</p>
+          <form className="form_auth_style" onSubmit={onSubmit} method="post">
+            <TextField
+              onChange={changeFields}
+              value={fields.email}
+              required
+              type="email"
+              id="email"
+              label="Электронная почта"
+            />
+            <TextField
+              onChange={changeFields}
+              value={fields.password}
+              required
+              type="password"
+              id="password"
+              label="Пароль"
+            />
+            <TextField
+              onChange={changeFields}
+              value={fields.confirmPassword}
+              required
+              type="password"
+              id="confirmPassword"
+              label="Подтвердите пароль"
+            />
+            {errorMessage && <span>ошибка:{errorMessage}</span>}
+            <button type="submit" disabled={isRegistering}>
+              {isRegistering ? 'ИДЕТ РЕГИСТРАЦИЯ...' : 'ЗАРЕГИСТРИРУЙТЕСЬ'}
             </button>
-
-            <div className="text-sm text-center">
-              Already have an account? {'   '}
-              <Link to={'/login'} className="text-center text-sm hover:underline font-bold">
-                Continue
-              </Link>
-            </div>
           </form>
         </div>
-      </main>
+      </div>
     </>
   );
 };
